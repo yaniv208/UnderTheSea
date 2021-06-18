@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.hit.underthesea.R;
+import com.hit.underthesea.model.InfoData;
 
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
@@ -34,16 +35,30 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.menu, container, false);
         Button howToPlay = view.findViewById(R.id.howToPlay_btn);
+        Button credit = view.findViewById(R.id.credit_btn);
         howToPlay.setOnClickListener(this);
+        credit.setOnClickListener(this);
+        view.findViewById(R.id.exit_setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
         return view;
     }
 
     @Override
     public void onClick(View v) {
+        InfoFragment fragment = new InfoFragment();
+
         switch (v.getId()) {
             case R.id.howToPlay_btn:
-                getChildFragmentManager().beginTransaction().add(R.id.child_container, new HowToPlayFragment(), null).commit();
+                fragment.setInfoData(new InfoData("How to play", "alvcflvfvn;vr"));
+                break;
+            case R.id.credit_btn:
+                fragment.setInfoData(new InfoData("Credit", "alvcflvfvn;vr"));
                 break;
         }
+        getChildFragmentManager().beginTransaction().add(R.id.child_container, fragment, null).commit();
     }
 }

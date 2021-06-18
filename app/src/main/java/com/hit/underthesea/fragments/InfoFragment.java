@@ -8,14 +8,21 @@ import androidx.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.hit.underthesea.R;
+import com.hit.underthesea.model.InfoData;
 
 
-public class HowToPlayFragment extends Fragment {
+public class InfoFragment extends Fragment {
 
+    private InfoData infoData;
 
-    public HowToPlayFragment() {
+    public void setInfoData(InfoData infoData) {
+        this.infoData = infoData;
+    }
+
+    public InfoFragment() {
         // Required empty public constructor
     }
 
@@ -30,7 +37,14 @@ public class HowToPlayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.how_to_play, container, false);
+        View view = inflater.inflate(R.layout.info_fragment, container, false);
+        TextView title = view.findViewById(R.id.title);
+        TextView body = view.findViewById(R.id.body);
+        title.setText(infoData.getTitle());
+        body.setText(infoData.getBody());
+
+        return view;
     }
 }

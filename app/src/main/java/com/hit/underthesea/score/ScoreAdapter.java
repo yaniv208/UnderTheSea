@@ -42,13 +42,13 @@ public class ScoreAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.row_score_table , viewGroup, false);
         }
         Score score = scores.get(i);
-        TextView nameTV = view.findViewById(R.id.name_scoretable);
-        TextView levelTV = view.findViewById(R.id.level_scoretable);
-        TextView scoreTV = view.findViewById(R.id.score_scoretable);
+        TextView nameTV = view.findViewById(R.id.name_row);
+        TextView levelTV = view.findViewById(R.id.level_row);
+        TextView scoreTV = view.findViewById(R.id.score_row);
 
         nameTV.setText(score.getName());
         levelTV.setText(score.getLevel());
-        scoreTV.setText(score.getScore());
+        scoreTV.setText(score.getScore()+"");
         return view;
     }
 }

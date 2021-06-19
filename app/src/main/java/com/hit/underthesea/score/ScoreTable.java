@@ -16,13 +16,13 @@ public class ScoreTable extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.score_table_list);
 
-//        ListView listView = findViewById(R.id.score_list);
-//        ArrayList<Score> scores = new ArrayList<>();
-////
-//       scores.add(new Score("Ofek", "Hard", 66));
-////
-//        ScoreAdapter scoreAdapter = new ScoreAdapter(scores,this);
-//        listView.setAdapter(scoreAdapter);
+        ListView listView = findViewById(R.id.score_list);
+        ArrayList<Score> scores = new ArrayList<>();
+//
+       scores.add(new Score("Ofek", "Hard", 66));
+//
+        ScoreAdapter scoreAdapter = new ScoreAdapter(scores,this);
+        listView.setAdapter(scoreAdapter);
     }
 
 }

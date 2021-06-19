@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/playback"
     android:orientation="vertical">
 
     <ImageView
@@ -28,7 +29,7 @@
     <Button
         android:id="@+id/easy_level"
         android:text="easy"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="@color/purple_200"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"/>
@@ -36,7 +37,7 @@
     <Button
         android:text="mid"
         android:id="@+id/mid_level"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="@color/purple_200"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"/>
@@ -44,7 +45,7 @@
     <Button
         android:text="hard"
         android:id="@+id/hard_level"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="@color/purple_200"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"/>
@@ -52,7 +53,7 @@
 
     <Button
         android:id="@+id/score_btn"
-        android:backgroundTint="@color/teal_700"
+        android:backgroundTint="@color/orange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="score"

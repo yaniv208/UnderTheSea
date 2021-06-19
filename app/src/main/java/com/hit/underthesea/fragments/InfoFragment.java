@@ -8,6 +8,8 @@ import androidx.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.hit.underthesea.R;
@@ -39,11 +41,19 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
+        //מקבלים את המידע מהסטינגס ועורכים את הכותרת ואת הגוף של הפרגמנט ילד
         View view = inflater.inflate(R.layout.info_fragment, container, false);
         TextView title = view.findViewById(R.id.title);
         TextView body = view.findViewById(R.id.body);
         title.setText(infoData.getTitle());
         body.setText(infoData.getBody());
+        ImageButton exitInfo = view.findViewById(R.id.exit_info);
+        exitInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
 
         return view;
     }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pick level"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/easy_level"
+        android:text="easy"
+        android:backgroundTint="@color/teal_200"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"/>
+
+    <Button
+        android:text="mid"
+        android:id="@+id/mid_level"
+        android:backgroundTint="@color/teal_200"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"/>
+
+    <Button
+        android:text="hard"
+        android:id="@+id/hard_level"
+        android:backgroundTint="@color/teal_200"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/score_btn"
+        android:backgroundTint="@color/teal_700"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="score"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

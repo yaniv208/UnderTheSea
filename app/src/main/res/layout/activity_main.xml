@@ -21,20 +21,20 @@
         android:layout_width="56dp"
         android:layout_height="48dp"
         android:layout_margin="15dp"
-        android:background="@drawable/settingicon" />
+        android:background="@drawable/settingbut" />
 
-    <Button
+    <ImageButton
         android:id="@+id/play_button"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
-        android:textColor="@color/white"
+        android:layout_width="237dp"
+        android:layout_height="85dp"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:layout_centerInParent="true"
-        android:text="Play" />
+        android:background="@drawable/playbutton"
+        android:text="Play"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/guidance_button"
@@ -60,12 +60,14 @@
         android:id="@+id/bubble2"
         android:layout_width="48dp"
         android:layout_height="379dp"
+        android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="245dp"
         android:src="@drawable/bubbles" />
+
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="2dp"
-        android:id="@+id/fragment_container"/>
+        android:elevation="2dp" />
 </RelativeLayout>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@drawable/scoretableback"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
@@ -12,27 +13,33 @@
     <TextView
         android:id="@+id/name_table"
         android:textSize="30dp"
+        android:textColor="@color/teal_700"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_margin="20dp"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:text="Name"/>
     <TextView
         android:id="@+id/level_table"
+        android:textColor="@color/teal_700"
+        android:textStyle="bold"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_margin="20dp"
         android:textSize="30dp"
         android:layout_height="wrap_content"
-        android:text="level"/>
+        android:text="Level"/>
     <TextView
         android:id="@+id/score_table"
+        android:textColor="@color/teal_700"
+        android:textStyle="bold"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:layout_margin="20dp"
-        android:text="score"/>
+        android:text="Score"/>
     </LinearLayout>
 
     <ListView

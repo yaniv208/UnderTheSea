@@ -33,7 +33,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //הוא מוסיף את האבא כי יש תכונות באקסמל שמותאמים לאבא, לכן ברגע שהוא יקבל את ההורה הם יוכלו להתאים את עצמם
-        View view = inflater.inflate(R.layout.menu, container, false);
+        View view = inflater.inflate(R.layout.settings, container, false);
         Button howToPlay = view.findViewById(R.id.howToPlay_btn);
         Button credit = view.findViewById(R.id.credit_btn);
         howToPlay.setOnClickListener(this);
@@ -63,6 +63,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 break;
         }
         //יוצרים פרגמנט חדש ומעבירים את המידע שקיבלנו מהבירור
+
         getChildFragmentManager().beginTransaction().add(R.id.child_container, fragment, null).commit();
     }
 }

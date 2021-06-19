@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button playbtn = findViewById(R.id.play_button);
+        ImageButton playbtn = findViewById(R.id.play_button);
         playbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@drawable/settingback"
+    android:clickable="true"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -12,7 +13,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/title"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_exit" />
+        android:src="@drawable/exitbut" />
 
     <TextView
         android:id="@+id/title"

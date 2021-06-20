@@ -24,7 +24,18 @@ public class PlayMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button easylevel = findViewById(R.id.easy_level);
+        easylevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PlayMenu.this, GameActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
 
 }

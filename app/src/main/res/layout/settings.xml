@@ -53,7 +53,7 @@
                 android:textStyle="bold"
                 android:textSize="25sp"
                 />
-            <Switch
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:layout_alignBaseline="@+id/musicTV"
                 android:layout_toEndOf="@+id/musicTV"
                 android:layout_width="wrap_content"

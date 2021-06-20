@@ -1,5 +1,7 @@
 package com.hit.underthesea.fragments;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,12 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.hit.underthesea.R;
 import com.hit.underthesea.model.InfoData;
 
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
+
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -36,6 +42,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.settings, container, false);
         Button howToPlay = view.findViewById(R.id.howToPlay_btn);
         Button credit = view.findViewById(R.id.credit_btn);
+        SwitchMaterial music = view.findViewById(R.id.switchmusic_btn);
+        music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+                    getActivity().startService(new Intent(getActivity(), MusicService.class));
+                else
+                    getActivity().stopService(new Intent(getActivity(), MusicService.class));
+            }
+        });
         howToPlay.setOnClickListener(this);
         credit.setOnClickListener(this);
         view.findViewById(R.id.exit_setting).setOnClickListener(new View.OnClickListener() {
@@ -66,4 +82,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         getChildFragmentManager().beginTransaction().add(R.id.child_container, fragment, null).commit();
     }
+
+
 }

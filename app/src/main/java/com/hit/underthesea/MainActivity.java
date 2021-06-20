@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.hit.underthesea.fragments.MusicService;
 import com.hit.underthesea.fragments.SettingsFragment;
 import com.hit.underthesea.score.ScoreTable;
 
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView2=findViewById(R.id.bubble2);
         AnimationDrawable animationDrawable2 =(AnimationDrawable)imageView2.getDrawable();
         animationDrawable2.start();
+
+        startService(new Intent(this, MusicService.class));
 
         ImageButton setting = findViewById(R.id.setting_button);
         setting.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +65,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }

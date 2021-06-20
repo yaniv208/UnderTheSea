@@ -20,5 +20,6 @@
         </activity>
         <activity android:name=".score.ScoreTable">
         </activity>
+        <service android:name=".fragments.MusicService"></service>
     </application>
 </manifest>

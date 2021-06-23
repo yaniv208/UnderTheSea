@@ -173,28 +173,28 @@ public class GameView extends SurfaceView implements Runnable {
                         finishDialog.setCancelable(false);
                         finishDialog.show();
 
-                        ImageButton ok_btn = viewinflater.findViewById(R.id.finish_btn);
-                        ok_btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                EditText entername = viewinflater.findViewById(R.id.edit_name);
-                                String username = entername.getText().toString();
-
-                                if(username.matches(""))
-                                    Toast.makeText(((Activity) getContext()), "Enter your nickname",Toast.LENGTH_SHORT).show();
-                                else{
-                                    Intent intent = new Intent(((Activity) getContext()), ScoreTable.class);
-                                    ((Activity) getContext()).startActivity(intent);
-                                    intent.putExtra("score_user",score);
-                                    intent.putExtra("user_name",username);
-
-                                }
-                            }
-                        });
-                        TextView scoreTV = viewinflater.findViewById(R.id.playerscore);
-                        scoreTV.setText(score+"");
-                    }
-                });
+//                        ImageButton ok_btn = viewinflater.findViewById(R.id.finish_btn);
+//                        ok_btn.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                EditText entername = viewinflater.findViewById(R.id.edit_name);
+//                                String username = entername.getText().toString();
+//
+//                                if(username.matches(""))
+//                                    Toast.makeText(((Activity) getContext()), "Enter your nickname",Toast.LENGTH_SHORT).show();
+//                                else{
+//                                    Intent intent = new Intent(((Activity) getContext()), ScoreTable.class);
+//                                    ((Activity) getContext()).startActivity(intent);
+//                                    intent.putExtra("score_user",score);
+//                                    intent.putExtra("user_name",username);
+//
+//                                }
+//                            }
+//                        });
+//                        TextView scoreTV = viewinflater.findViewById(R.id.playerscore);
+//                        scoreTV.setText(score+"");
+//                    }
+//                });
                 return;
             }
 

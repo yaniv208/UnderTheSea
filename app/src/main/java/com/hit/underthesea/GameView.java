@@ -92,7 +92,6 @@ public class GameView extends SurfaceView implements Runnable {
             //if stone and fish
             if(Rect.intersects(stones.get(i).getCollisionShape(), fish.getCollisionShape())){
                 stones.remove(i);
-                //stones.add(new Stone(getResources()));
                 pause();
                // stones.get(i).objectUpdate(screenX,screenY);
                 //Log.d("inin","stone and fish");

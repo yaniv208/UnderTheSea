@@ -4,16 +4,17 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
-public class Stone extends ObjectView{
+public class Food extends ObjectView {
+    Bitmap food;
+    public boolean wasEaten = true;
 
-    Bitmap stone;
-
-    public Stone(Resources res) {
-        super(res, R.drawable.stone);
+    public Food(Resources res) {
+        super(res, R.drawable.food);
     }
 
-    Bitmap getStone(){
-        return stone;
+    Bitmap getFood(){
+        return food;
+
     }
 
     Rect getCollisionShape (){

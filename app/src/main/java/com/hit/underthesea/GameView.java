@@ -1,8 +1,13 @@
 package com.hit.underthesea;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
@@ -12,19 +17,19 @@ import java.util.Random;
 public class GameView extends SurfaceView implements Runnable {
 
     private Thread thread;
-    private boolean isPlaying;
-    private int screenX, screenY;
+    private boolean isPlaying, isGameOver = false;
+    private int screenX, screenY, score = 0, lives=3;
     private Paint paint;
     private Fish fish;
+    private Stone stone;
+    private Food food;
     public static float screenRatioX, screenRatioY;
     private BackgroundGame backgroundGame1, backgroundGame2;
-   // private Stone[] stones;
     private ArrayList<Stone> stones = new ArrayList<Stone>();
-
+    private ArrayList<Food> foods = new ArrayList<Food>();
     int min=1, max=3;
-    private Random randomstonespeed;
-    int randomstone;
-    //int random = new Random().nextInt((max-min)+1)+min;
+    int randomstone=3, randomfood;
+
 
     public GameView(Context context, int screenX, int screenY){
         super(context);
@@ -40,19 +45,23 @@ public class GameView extends SurfaceView implements Runnable {
         backgroundGame2.x=screenX;
 
         paint = new Paint();
+        paint.setTextSize(100);
+        paint.setColor(Color.WHITE);
 
-       // stones = new Stone[random];
 
-        stones.clear();
-        randomstone = new Random().nextInt((max-min)+1)+min;
+        //randomstone = new Random().nextInt((max-min)+1)+min;
+        Log.d("howlives", randomstone+"");
+
+        randomfood = new Random().nextInt((max-min)+1)+min;
 
         for(int i = 0; i< randomstone; i++){
-            //Stone stone = new Stone(getResources());
-            //stones[i] = stone;
             stones.add(new Stone(getResources()));
         }
-        //stone = new Stone(getResources());
-        randomstonespeed = new Random();
+
+        for(int i = 0; i< randomfood; i++){
+            foods.add(new Food(getResources()));
+        }
+
     }
 
     @Override
@@ -75,16 +84,28 @@ public class GameView extends SurfaceView implements Runnable {
             backgroundGame2.x = screenX;
         }
 
-        for (Stone stone : stones){
-            stone.x -= stone.speed;
-            if(stone.x + stone.width <0){
-                int bound = (int) (30 * screenRatioX);
-                stone.speed = randomstonespeed.nextInt(bound);
+        for (int i=0; i<stones.size();i++){
+            stones.get(i).objectUpdate(screenX,screenY);
 
-                if(stone.speed < 10 * screenRatioX)
-                    stone.speed =(int) (10 * screenRatioX);
-                stone.x = screenX;
-                stone.y = randomstonespeed.nextInt(screenY - stone.height);
+
+            //if stone and fish
+            if(Rect.intersects(stones.get(i).getCollisionShape(), fish.getCollisionShape())){
+                stones.remove(i);
+                stones.add(new Stone(getResources()));
+                lives--;
+
+                if(lives==0)
+                    isGameOver=true;
+                return;
+            }
+        }
+        //if fish and food
+        for (Food food : foods) {
+            food.objectUpdate(screenX, screenY);
+            if(Rect.intersects(food.getCollisionShape(), fish.getCollisionShape())){
+                score++;
+                food.x = -500; //food off the screen
+                food.wasEaten = true;
             }
         }
     }
@@ -97,10 +118,54 @@ public class GameView extends SurfaceView implements Runnable {
             canvas.drawBitmap(backgroundGame1.background , backgroundGame1.x , backgroundGame1.y,paint );
             canvas.drawBitmap(backgroundGame2.background , backgroundGame2.x , backgroundGame2.y,paint );
 
-            canvas.drawBitmap(fish.getFish(), fish.x, fish.y, paint);
+            for (Food food : foods)
+                canvas.drawBitmap(food.getObject(), food.getX(), food.getY(), paint);
 
+            //score text
+            Paint scoreText = new Paint();
+            scoreText.setTextSize(70);
+            scoreText.setColor(Color.WHITE);
+            scoreText.isFakeBoldText();
+            String myScore = "Score: "+score;
+            Rect bounds = new Rect();
+            scoreText.getTextBounds(myScore, 0, myScore.length(), bounds);
+
+            canvas.drawText(myScore + "", this.getWidth() - bounds.width()-35 , bounds.height()+15 , scoreText);
+
+            //lives
+            Bitmap livesRed = BitmapFactory.decodeResource(getResources(), R.drawable.heartred);
+            Bitmap livesWhite = BitmapFactory.decodeResource(getResources(),R.drawable.heartwhite);
+
+
+            for(int j= 0; j<lives ; j++){
+                canvas.drawBitmap(livesRed, null, new Rect(this.getWidth()-bounds.width()-60-(3-j)*56, 20, this.getWidth()-bounds.width()-60-(2-j)*56, 61), null);
+            }
+
+            for(int j=lives; j<lives ; j++){
+                canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-60-(3-j)*55, 18, this.getWidth()-bounds.width()-60-(2-j)*55, 59), null);
+            }
+
+
+            if(isGameOver) {
+                isPlaying = false;
+                canvas.drawBitmap(fish.getDead(), fish.x,fish.y,paint);
+
+                //all the object on the screen disaper
+                getHolder().unlockCanvasAndPost(canvas);
+
+                Paint gameOver = new Paint();
+                scoreText.setTextSize(150);
+                scoreText.setColor(Color.WHITE);
+                scoreText.isFakeBoldText();
+
+                canvas.drawText("Game Over! ", screenX/2f , screenY/2f , gameOver);
+                return;
+            }
+
+            canvas.drawBitmap(fish.getFish(), fish.x, fish.y, paint);
             for (Stone stone : stones)
-                canvas.drawBitmap(stone.getStone(), stone.x, stone.y, paint);
+                canvas.drawBitmap(stone.getObject(), stone.getX(), stone.getY(), paint);
+
 
             getHolder().unlockCanvasAndPost(canvas);
         }
@@ -110,6 +175,8 @@ public class GameView extends SurfaceView implements Runnable {
     private void sleep() {
         try{
             Thread.sleep(25);
+          //  stones.add(new Stone(getResources()));
+          //  Log.d("sleep","???????");
         }catch (InterruptedException e){
             e.printStackTrace();
         }
@@ -130,7 +197,6 @@ public class GameView extends SurfaceView implements Runnable {
         }
     }
 
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float  ydown = 0, ymove=0;
@@ -144,7 +210,7 @@ public class GameView extends SurfaceView implements Runnable {
                 ymove = event.getY();
                 distanceY = ymove - ydown;
 
-                fish.y = distanceY;
+                fish.y = (int) distanceY;
 
                 if(fish.y >= screenY - fish.height)
                 fish.y = screenY- fish.height;

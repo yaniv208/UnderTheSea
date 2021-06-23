@@ -1,6 +1,9 @@
 package com.hit.underthesea;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -8,14 +11,25 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.hit.underthesea.score.ScoreTable;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameView extends SurfaceView implements Runnable {
 
+    public static final int BACKGROUND_MOVEMENT= 10;
+
+    private Context context;
     private Thread thread;
     private boolean isPlaying, isGameOver = false;
     private int screenX, screenY, score = 0, lives=3;
@@ -23,7 +37,6 @@ public class GameView extends SurfaceView implements Runnable {
     private Fish fish;
     private Stone stone;
     private Food food;
-    public static float screenRatioX, screenRatioY;
     private BackgroundGame backgroundGame1, backgroundGame2;
     private ArrayList<Stone> stones = new ArrayList<Stone>();
     private ArrayList<Food> foods = new ArrayList<Food>();
@@ -33,11 +46,9 @@ public class GameView extends SurfaceView implements Runnable {
 
     public GameView(Context context, int screenX, int screenY){
         super(context);
+        this.context= context;
         this.screenX = screenX;
         this.screenY = screenY;
-        screenRatioX = 1920 / screenX;
-        Log.d("ratiox",screenRatioX+"");
-        screenRatioY = 1920 / screenY;
         backgroundGame1 = new BackgroundGame(screenX, screenY, getResources());
         backgroundGame2 = new BackgroundGame(screenX, screenY, getResources());
 
@@ -51,7 +62,7 @@ public class GameView extends SurfaceView implements Runnable {
 
 
         //randomstone = new Random().nextInt((max-min)+1)+min;
-       // Log.d("howlives", randomstone+"");
+        // Log.d("howlives", randomstone+"");
 
         randomfood = new Random().nextInt((max-min)+1)+min;
 
@@ -75,8 +86,8 @@ public class GameView extends SurfaceView implements Runnable {
     }
 
     private void update() {
-        backgroundGame1.x -=10 * screenRatioX;
-        backgroundGame2.x -=10 * screenRatioX;
+        backgroundGame1.x-=BACKGROUND_MOVEMENT;
+        backgroundGame2.x-=BACKGROUND_MOVEMENT;
 
         if(backgroundGame1.x + backgroundGame1.background.getWidth() <0) {
             backgroundGame1.x = screenX;
@@ -92,14 +103,11 @@ public class GameView extends SurfaceView implements Runnable {
             //if stone and fish
             if(Rect.intersects(stones.get(i).getCollisionShape(), fish.getCollisionShape())){
                 stones.remove(i);
-                pause();
-               // stones.get(i).objectUpdate(screenX,screenY);
-                //Log.d("inin","stone and fish");
-                //lives--;
-
-                //if(lives==0)
-                  //  isGameOver=true;
-              //  return;
+                lives--;
+                stones.add(new Stone(getResources()));
+                if(lives==0)
+                    isGameOver=true;
+                return;
             }
         }
         //if fish and food
@@ -107,7 +115,7 @@ public class GameView extends SurfaceView implements Runnable {
             food.objectUpdate(screenX, screenY);
             if(Rect.intersects(food.getCollisionShape(), fish.getCollisionShape())){
                 score++;
-                food.x = -500; //food off the screen
+                food.setX(-500);  //food off the screen
                 food.wasEaten = true;
             }
         }
@@ -145,7 +153,6 @@ public class GameView extends SurfaceView implements Runnable {
             }
 //
             for(int j=lives; j<3 ; j++){
-                Log.d("white","???????");
                 canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-60-(3-j)*55, 18, this.getWidth()-bounds.width()-60-(2-j)*55, 59), null);
             }
 
@@ -153,16 +160,41 @@ public class GameView extends SurfaceView implements Runnable {
             if(isGameOver) {
                 isPlaying = false;
                 canvas.drawBitmap(fish.getDead(), fish.x,fish.y,paint);
-
                 //all the object on the screen disaper
                 getHolder().unlockCanvasAndPost(canvas);
 
-                Paint gameOver = new Paint();
-                scoreText.setTextSize(150);
-                scoreText.setColor(Color.WHITE);
-                scoreText.isFakeBoldText();
+                ((Activity)getContext()).runOnUiThread(new Runnable() {
+                    public void run() {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+                        View viewinflater = inflater.inflate(R.layout.game_over, null);
+                        builder.setView(viewinflater);
+                        AlertDialog finishDialog = builder.create();
+                        finishDialog.setCancelable(false);
+                        finishDialog.show();
 
-                canvas.drawText("Game Over! ", screenX/2f , screenY/2f , gameOver);
+                        ImageButton ok_btn = viewinflater.findViewById(R.id.finish_btn);
+                        ok_btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                EditText entername = viewinflater.findViewById(R.id.edit_name);
+                                String username = entername.getText().toString();
+
+                                if(username.matches(""))
+                                    Toast.makeText(((Activity) getContext()), "Enter your nickname",Toast.LENGTH_SHORT).show();
+                                else{
+                                    Intent intent = new Intent(((Activity) getContext()), ScoreTable.class);
+                                    ((Activity) getContext()).startActivity(intent);
+                                    intent.putExtra("score_user",score);
+                                    intent.putExtra("user_name",username);
+
+                                }
+                            }
+                        });
+                        TextView scoreTV = viewinflater.findViewById(R.id.playerscore);
+                        scoreTV.setText(score+"");
+                    }
+                });
                 return;
             }
 
@@ -192,15 +224,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     public void pause () {
         try {
-            //isPlaying =false;
-            lives--;
-            Log.d("inin",lives+"");
-            if(lives == 0)
-                isGameOver=true;
-            else {
-                resume();
-                stones.add(new Stone(getResources()));
-            }
+            isPlaying = false;
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -214,16 +238,17 @@ public class GameView extends SurfaceView implements Runnable {
         switch (event.getAction()){
             //the user put his finger down on the screen
             case MotionEvent.ACTION_DOWN:
-               ydown = event.getY();
+                ydown = event.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
+                Log.d("movefinger","mmmmm");
                 ymove = event.getY();
                 distanceY = ymove - ydown;
 
                 fish.y = (int) distanceY;
 
                 if(fish.y >= screenY - fish.height)
-                fish.y = screenY- fish.height;
+                    fish.y = screenY- fish.height;
                 break;
         }
         return true;

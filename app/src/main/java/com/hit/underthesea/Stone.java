@@ -17,6 +17,6 @@ public class Stone extends ObjectView{
     }
 
     Rect getCollisionShape (){
-        return new Rect(x, y, x+width, y+height);
+        return new Rect(this.getX(), this.getY(), this.getX()+this.getWidth(), this.getY()+this.getHeight());
     }
 }

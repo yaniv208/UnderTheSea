@@ -1,5 +1,6 @@
 package com.hit.underthesea.score;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -18,9 +19,11 @@ public class ScoreTable extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.score_list);
         ArrayList<Score> scores = new ArrayList<>();
-//
-       scores.add(new Score("Ofek", "Hard", 66));
-//
+
+        Intent intent = getIntent();
+        String userName = intent.getStringExtra("user_name");
+        int userScore = intent.getIntExtra("score_user",0);
+
         ScoreAdapter scoreAdapter = new ScoreAdapter(scores,this);
         listView.setAdapter(scoreAdapter);
     }

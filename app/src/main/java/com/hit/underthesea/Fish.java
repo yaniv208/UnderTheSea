@@ -5,9 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
-import static com.hit.underthesea.GameView.screenRatioX;
-import static com.hit.underthesea.GameView.screenRatioY;
-
 public class Fish {
 
     int width, height, wingCounter=0;
@@ -22,9 +19,6 @@ public class Fish {
 
         width /=5;
         height /=5;
-
-        width *= (int) screenRatioX;
-        height *= (int) screenRatioY;
 
         fish = Bitmap.createScaledBitmap(fish, width, height,false);
 

@@ -6,15 +6,11 @@ import android.graphics.BitmapFactory;
 
 import java.util.Random;
 
-import static com.hit.underthesea.GameView.screenRatioX;
-import static com.hit.underthesea.GameView.screenRatioY;
-
 public class ObjectView {
-    public int x=0,y, width,height;
+    private int x=0,y, width,height;
     Bitmap object;
-    public int speed=20;
+    private int speed,maxSpeed=30,minSpeed=20;
     Random randomstonespeed = new Random();
-
 
     public ObjectView(Resources res, int pic) {
         object = BitmapFactory.decodeResource(res, pic);
@@ -25,10 +21,8 @@ public class ObjectView {
         width /= 2.5;
         height /=2.5;
 
-        width *= (int) screenRatioX;
-        height *= (int) screenRatioY;
-
         object = Bitmap.createScaledBitmap(object, width, height,false);
+        this.speed = randomstonespeed.nextInt((maxSpeed-minSpeed)+1)+minSpeed;
 
         y = -height;
 
@@ -38,14 +32,17 @@ public class ObjectView {
         this.x -= this.speed;
 
         if (this.x + this.width < 0) {//the stone get new speed
-            int bound = (int) (30 * screenRatioX);
-            this.speed = randomstonespeed.nextInt(bound);
-
-            if (this.speed < 10 * screenRatioX)
-                this.speed = (int) (20 * screenRatioX);
-            this.x = screenX;
-            this.y = randomstonespeed.nextInt(screenY - this.height);
+            updateSpeed(screenX,screenY);
         }
+    }
+    public void updateSpeed(int screenX,int screenY){
+        //int bound = 30;
+        this.speed = randomstonespeed.nextInt((maxSpeed-minSpeed)+1)+minSpeed;
+
+        // if (this.speed < 10)
+        //   this.speed = (int) (20);
+        this.x = screenX;
+        this.y = randomstonespeed.nextInt(screenY - this.height);
     }
 
     public int getX() {
@@ -68,8 +65,17 @@ public class ObjectView {
         return speed;
     }
 
-        Bitmap getObject(){
-        return object;
+    Bitmap getObject(){ return object; }
 
-    }
+    public void setX(int x) { this.x = x; }
+
+    public void setY(int y) { this.y = y; }
+
+    public void setWidth(int width) { this.width = width; }
+
+    public void setHeight(int height) { this.height = height; }
+
+    public void setObject(Bitmap object) { this.object = object; }
+
+    public void setSpeed(int speed) { this.speed = speed; }
 }

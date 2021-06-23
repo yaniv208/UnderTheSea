@@ -36,6 +36,7 @@ public class GameView extends SurfaceView implements Runnable {
         this.screenX = screenX;
         this.screenY = screenY;
         screenRatioX = 1920 / screenX;
+        Log.d("ratiox",screenRatioX+"");
         screenRatioY = 1920 / screenY;
         backgroundGame1 = new BackgroundGame(screenX, screenY, getResources());
         backgroundGame2 = new BackgroundGame(screenX, screenY, getResources());
@@ -50,7 +51,7 @@ public class GameView extends SurfaceView implements Runnable {
 
 
         //randomstone = new Random().nextInt((max-min)+1)+min;
-        Log.d("howlives", randomstone+"");
+       // Log.d("howlives", randomstone+"");
 
         randomfood = new Random().nextInt((max-min)+1)+min;
 
@@ -91,12 +92,15 @@ public class GameView extends SurfaceView implements Runnable {
             //if stone and fish
             if(Rect.intersects(stones.get(i).getCollisionShape(), fish.getCollisionShape())){
                 stones.remove(i);
-                stones.add(new Stone(getResources()));
-                lives--;
+                //stones.add(new Stone(getResources()));
+                pause();
+               // stones.get(i).objectUpdate(screenX,screenY);
+                //Log.d("inin","stone and fish");
+                //lives--;
 
-                if(lives==0)
-                    isGameOver=true;
-                return;
+                //if(lives==0)
+                  //  isGameOver=true;
+              //  return;
             }
         }
         //if fish and food
@@ -140,8 +144,9 @@ public class GameView extends SurfaceView implements Runnable {
             for(int j= 0; j<lives ; j++){
                 canvas.drawBitmap(livesRed, null, new Rect(this.getWidth()-bounds.width()-60-(3-j)*56, 20, this.getWidth()-bounds.width()-60-(2-j)*56, 61), null);
             }
-
-            for(int j=lives; j<lives ; j++){
+//
+            for(int j=lives; j<3 ; j++){
+                Log.d("white","???????");
                 canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-60-(3-j)*55, 18, this.getWidth()-bounds.width()-60-(2-j)*55, 59), null);
             }
 
@@ -175,8 +180,6 @@ public class GameView extends SurfaceView implements Runnable {
     private void sleep() {
         try{
             Thread.sleep(25);
-          //  stones.add(new Stone(getResources()));
-          //  Log.d("sleep","???????");
         }catch (InterruptedException e){
             e.printStackTrace();
         }
@@ -190,7 +193,15 @@ public class GameView extends SurfaceView implements Runnable {
 
     public void pause () {
         try {
-            isPlaying =false;
+            //isPlaying =false;
+            lives--;
+            Log.d("inin",lives+"");
+            if(lives == 0)
+                isGameOver=true;
+            else {
+                resume();
+                stones.add(new Stone(getResources()));
+            }
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();

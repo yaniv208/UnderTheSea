@@ -37,7 +37,7 @@ public class ObjectView {
     public void objectUpdate(int screenX, int screenY) {
         this.x -= this.speed;
 
-        if (this.x + this.width < 0) {
+        if (this.x + this.width < 0) {//the stone get new speed
             int bound = (int) (30 * screenRatioX);
             this.speed = randomstonespeed.nextInt(bound);
 

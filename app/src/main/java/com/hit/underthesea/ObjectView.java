@@ -14,9 +14,12 @@ public class ObjectView {
     private int speed,maxSpeed,minSpeed;
     Random randomstonespeed = new Random();
 
-    public ObjectView(Resources res, int pic, int minSpeed, int maxSpeed) {
+    public ObjectView(Resources res, int pic, int minSpeedS, int maxSpeedS) {
+
         object = BitmapFactory.decodeResource(res,pic);
-        Log.d("test", pic+"");
+
+        this.maxSpeed = maxSpeedS;
+        this.minSpeed = minSpeedS;
 
         width = object.getWidth();
         height = object.getHeight();
@@ -35,24 +38,16 @@ public class ObjectView {
         this.x -= this.speed;
 
         if (this.x + this.width < 0) {  //the stone get new speed
-            updateSpeed(screenX,screenY);
+            this.speed = randomstonespeed.nextInt((maxSpeed-minSpeed)+1)+minSpeed;
+            this.x = screenX;
+            this.y = randomstonespeed.nextInt(screenY - this.height);
         }
-    }
-    public void updateSpeed(int screenX,int screenY){
-        //int bound = 30;
-        this.speed = randomstonespeed.nextInt((maxSpeed-minSpeed)+1)+minSpeed;
-        // if (this.speed < 10)
-        //   this.speed = (int) (20);
-        this.x = screenX;
-        this.y = randomstonespeed.nextInt(screenY - this.height);
     }
 
     public int hit(Fish fish, int lives, int score){
         if(Rect.intersects(this.getCollisionShape(), fish.getCollisionShape())) {
-            Log.d("check", "1");
             return 1;
         }
-        Log.d("check", "0");
         return 0;
     }
 

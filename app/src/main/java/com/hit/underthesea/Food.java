@@ -8,7 +8,7 @@ public class Food extends ObjectView {
     public boolean wasEaten = true;
 
     public Food(Resources res,int picfood, int minSpeed, int maxSpeed) {
-        super(res, R.drawable.food, minSpeed,maxSpeed);
+        super(res, picfood, minSpeed,maxSpeed);
     }
 
     Bitmap getFood(){

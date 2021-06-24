@@ -1,11 +1,6 @@
 package com.hit.underthesea;
 
 public class Level {
-//    private Food food;
-//    private Stone stone;
-//    private Fish fish;
-//    private BackgroundGame backgroundGame;
-
     private int stoneAmount;
     private int foodAmount;
     private int fishpic;

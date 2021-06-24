@@ -43,10 +43,10 @@ public class GameView extends SurfaceView implements Runnable {
     private ArrayList<Food> foods = new ArrayList<Food>();
     int min=1, max=3;
 
-    public GameView(Context context, int screenX, int screenY, Level level){
+    public GameView(Context context, int screenX, int screenY, Level levelYouAre){
         super(context);
 
-        this.level = new Level(level);
+        this.level = new Level(levelYouAre);
 
         this.context= context;
         this.screenX = screenX;
@@ -64,7 +64,6 @@ public class GameView extends SurfaceView implements Runnable {
 
 
         for(int i = 0; i< level.getStoneAmount(); i++){
-            Log.d("test",level.getStonepic()+"");
             stones.add(new Stone(getResources(),level.getStonepic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
         }
 
@@ -95,20 +94,26 @@ public class GameView extends SurfaceView implements Runnable {
 
         for (int i=0; i<stones.size();i++){
             stones.get(i).objectUpdate(screenX,screenY);
-
             //if stone and fish
+
+            int live = stones.get(i).hit(fish,lives,score);
+            if(live!=lives){
                 stones.remove(i);
-                lives = stones.get(i).hit(fish,lives,score);
+                lives = live;
                 stones.add(new Stone(getResources(),level.getStonepic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
                 if(lives==0)
                     isGameOver=true;
                 return;
             }
+        }
 
         //if fish and food
         for (Food food : foods){
             food.objectUpdate(screenX, screenY);
-            score = food.hit(fish, lives, score); //if i have collision return 1, else 0
+            int scoreHelp = food.hit(fish, lives, score);//if i have collision return 1, else 0
+            if(scoreHelp!=score) {
+                score = scoreHelp;
+            }
         }
     }
 

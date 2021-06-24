@@ -11,14 +11,14 @@ public class Fish {
     int x,y;
     Bitmap fish, dead;
 
-    Fish (int screenY, Resources res){
-        fish = BitmapFactory.decodeResource(res, R.drawable.fishplayer);
+    Fish (int screenY, Resources res, int pic){
+        fish = BitmapFactory.decodeResource(res, pic);
 
         width = fish.getWidth();
         height = fish.getHeight();
 
-        width /=5;
-        height /=5;
+        width /=7;
+        height /=7;
 
         fish = Bitmap.createScaledBitmap(fish, width, height,false);
 

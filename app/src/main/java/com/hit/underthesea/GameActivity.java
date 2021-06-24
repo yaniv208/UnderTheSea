@@ -22,10 +22,9 @@ public class GameActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         int levelNum = bundle.getInt("num_level");
         ArrayList<Level> levels = new ArrayList<Level>();
-        levels.add(new Level(2, 4, R.drawable.fishplayer, R.drawable.food, R.drawable.stone,30,20,20,15));
-        levels.add(new Level(3, 3, R.drawable.fishplayer, R.drawable.food, R.drawable.stone, 35,25,25,20));
-        levels.add(new Level(4, 2, R.drawable.fishplayer, R.drawable.food, R.drawable.stone,40,30,30,25));
-
+        levels.add(new Level(3, 5, R.drawable.fishplayer, R.drawable.food, R.drawable.stone,35,30,30,25,"1",52));//level1
+        levels.add(new Level(4, 4, R.drawable.fishlevel2, R.drawable.food, R.drawable.stone, 45,40,40,35,"2",30));//level2
+        levels.add(new Level(5, 3, R.drawable.fishlevel3, R.drawable.food, R.drawable.stone,50,40,40,35,"3",15));//level3
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hit.underthesea.score.ScoreTable;
 
-public class PlayMenu extends AppCompatActivity {
+
+public class PlayMenu extends AppCompatActivity implements View.OnClickListener{
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,22 +27,29 @@ public class PlayMenu extends AppCompatActivity {
             }
         });
 
-        Button easylevel = findViewById(R.id.easy_level);
-        Bundle bundle = new Bundle();
-        bundle.putInt("num_level", 1);
-        easylevel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PlayMenu.this, GameActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-
+        Button easylevel = findViewById(R.id.level1);
+        Button midlevel = findViewById(R.id.level2);
+        Button hardlevel = findViewById(R.id.level3);
+        easylevel.setOnClickListener(this);
+        midlevel.setOnClickListener(this);
+        hardlevel.setOnClickListener(this);
 
     }
 
 
+    @Override
+    public void onClick(View view) {
+        int numberlevel=1;
+        if(view.getId()==R.id.level2)
+            numberlevel = 2;
+        else if(view.getId()==R.id.level3){
+            numberlevel=3;
+        }
 
-
+        Bundle bundle = new Bundle();
+        bundle.putInt("num_level", numberlevel);
+        Intent intent = new Intent(PlayMenu.this, GameActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }

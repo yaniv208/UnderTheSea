@@ -29,10 +29,11 @@ public class ScoreTable extends AppCompatActivity {
 
         String userName = intent.getStringExtra("user_name");
         int userScore = intent.getIntExtra("score_user",0);
+        String numlevel =intent.getStringExtra("level_name");
 
         loadData();
         if(userName!=null) {//when its come from the score
-            addScoreInHisPosition(userName,"1",userScore);
+            addScoreInHisPosition(userName,numlevel,userScore);
             //scores.add(new Score(userName, "1", userScore));
             saveData();
         }

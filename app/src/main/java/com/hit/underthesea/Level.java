@@ -7,8 +7,10 @@ public class Level {
     private int foodpic;
     private int stonepic;
     private int maxSpeedFood, minSpeedFood, maxSpeedStone,minSpeedStone;
+    private String numlevel;
+    private int highScore;
 
-    public Level(int stoneAmount, int foodAmount, int fishpic, int foodpic, int stonepic, int maxSpeedFood, int minSpeedFood, int maxSpeedStone, int minSpeedStone) {
+    public Level(int stoneAmount, int foodAmount, int fishpic, int foodpic, int stonepic, int maxSpeedFood, int minSpeedFood, int maxSpeedStone, int minSpeedStone,String numlevel, int highScore) {
         this.stoneAmount = stoneAmount;
         this.foodAmount = foodAmount;
         this.fishpic = fishpic;
@@ -18,6 +20,8 @@ public class Level {
         this.minSpeedFood = minSpeedFood;
         this.maxSpeedStone = maxSpeedStone;
         this.minSpeedStone = minSpeedStone;
+        this.numlevel=numlevel;
+        this.highScore=highScore;
     }
 
     public Level(Level level) {
@@ -30,6 +34,8 @@ public class Level {
         this.minSpeedFood = level.minSpeedFood;
         this.maxSpeedStone = level.maxSpeedStone;
         this.minSpeedStone = level.minSpeedStone;
+        this.numlevel = level.numlevel;
+        this.highScore=level.highScore;
     }
 
     public int getStoneAmount() {
@@ -80,9 +86,15 @@ public class Level {
         this.maxSpeedFood = maxSpeedFood;
     }
 
-    public int getMinSpeedFood() {
-        return minSpeedFood;
-    }
+    public int getMinSpeedFood() { return minSpeedFood; }
+
+    public int getHighScore() { return highScore; }
+
+    public void setHighScore(int highScore) { this.highScore = highScore; }
+
+    public String getNumlevel() { return numlevel; }
+
+    public void setNumlevel(String numlevel) { this.numlevel = numlevel; }
 
     public void setMinSpeedFood(int minSpeedFood) {
         this.minSpeedFood = minSpeedFood;

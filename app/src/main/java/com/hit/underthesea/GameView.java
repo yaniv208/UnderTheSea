@@ -54,7 +54,7 @@ public class GameView extends SurfaceView implements Runnable {
         backgroundGame1 = new BackgroundGame(screenX, screenY, getResources());
         backgroundGame2 = new BackgroundGame(screenX, screenY, getResources());
 
-        fish= new Fish(screenY, getResources());
+        fish= new Fish(screenY, getResources(),level.getFishpic());
 
         backgroundGame2.x=screenX;
 
@@ -159,36 +159,66 @@ public class GameView extends SurfaceView implements Runnable {
 
                 ((Activity)getContext()).runOnUiThread(new Runnable() {
                     public void run() {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
-                        View viewinflater = inflater.inflate(R.layout.game_over, null);
-                        builder.setView(viewinflater);
-                        AlertDialog finishDialog = builder.create();
-                        finishDialog.setCancelable(false);
-                        finishDialog.show();
+                        if(level.getHighScore()<=score) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+                            View viewinflater = inflater.inflate(R.layout.game_over, null);
+                            builder.setView(viewinflater);
+                            AlertDialog finishDialog = builder.create();
+                            finishDialog.setCancelable(false);
+                            finishDialog.show();
 
-                        ImageButton ok_btn = viewinflater.findViewById(R.id.finish_btn);
-                        ok_btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                EditText entername = viewinflater.findViewById(R.id.edit_name);
-                                String username = entername.getText().toString();
+                            ImageButton ok_btn = viewinflater.findViewById(R.id.finish_btn);
+                            ok_btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    EditText entername = viewinflater.findViewById(R.id.edit_name);
+                                    String username = entername.getText().toString();
 
-                                if(username.matches(""))
-                                    Toast.makeText(((Activity) getContext()), "Enter your nickname",Toast.LENGTH_SHORT).show();
-                                else{
-                                    Intent intent = new Intent(((Activity) getContext()), ScoreTable.class);
-                                    ((Activity) getContext()).startActivity(intent);
-                                    intent.putExtra("score_user",score);
-                                    intent.putExtra("user_name",username);
-                                    ((Activity)getContext()).startActivity(intent);
+                                    if (username.matches(""))
+                                        Toast.makeText(((Activity) getContext()), "Enter your nickname", Toast.LENGTH_SHORT).show();
+                                    else {
+                                        Intent intent = new Intent(((Activity) getContext()), ScoreTable.class);
+                                        ((Activity) getContext()).startActivity(intent);
+                                        intent.putExtra("score_user", score);
+                                        intent.putExtra("user_name", username);
+                                        intent.putExtra("level_name", level.getNumlevel());
+                                        ((Activity) getContext()).startActivity(intent);
 
+                                    }
                                 }
-                            }
-                        });
-                        TextView scoreTV = viewinflater.findViewById(R.id.playerscore);
-                        scoreTV.setText(score+"");
+                            });
+
+                            TextView scoreTV = viewinflater.findViewById(R.id.playerscore);
+                            scoreTV.setText(score + "");
+                        }
+                        else{
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+                            View viewinflater = inflater.inflate(R.layout.loser, null);
+                            builder.setView(viewinflater);
+                            AlertDialog finishDialog = builder.create();
+                            finishDialog.setCancelable(false);
+                            finishDialog.show();
+
+                            ImageButton okloser_btn = viewinflater.findViewById(R.id.ok_loser);
+                            TextView scoreloserTV = viewinflater.findViewById(R.id.playerscoreloser);
+                            TextView needmoreTV = viewinflater.findViewById(R.id.miss_score);
+                            needmoreTV.setText((level.getHighScore()-score) + "");
+                            scoreloserTV.setText(score + "");
+                            okloser_btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    Intent intent = new Intent(((Activity) getContext()), PlayMenu.class);
+                                    ((Activity) getContext()).startActivity(intent);
+                                }
+                            });
+                        }
+
+
                     }
+
                 });
                 return;
             }
@@ -205,7 +235,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private void sleep() {
         try{
-            Thread.sleep(25);
+            Thread.sleep(17);
         }catch (InterruptedException e){
             e.printStackTrace();
         }

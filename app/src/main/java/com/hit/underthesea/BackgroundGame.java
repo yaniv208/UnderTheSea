@@ -10,7 +10,7 @@ public class BackgroundGame {
     Bitmap background;
 
     BackgroundGame (int screenX, int screenY , Resources res){
-        background = BitmapFactory.decodeResource(res, R.drawable.levelbackground);
+        background = BitmapFactory.decodeResource(res, R.drawable.backgroundlevel);
         background = Bitmap.createScaledBitmap(background, screenX, screenY, false);
     }
 }

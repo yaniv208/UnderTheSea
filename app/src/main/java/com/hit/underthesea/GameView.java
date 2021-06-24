@@ -23,11 +23,12 @@ import android.widget.Toast;
 import com.hit.underthesea.score.ScoreTable;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GameView extends SurfaceView implements Runnable {
 
     public static final int BACKGROUND_MOVEMENT= 10;
+
+    private Level level;
 
     private Context context;
     private Thread thread;
@@ -41,11 +42,12 @@ public class GameView extends SurfaceView implements Runnable {
     private ArrayList<Stone> stones = new ArrayList<Stone>();
     private ArrayList<Food> foods = new ArrayList<Food>();
     int min=1, max=3;
-    int randomstone=3, randomfood;
 
-
-    public GameView(Context context, int screenX, int screenY){
+    public GameView(Context context, int screenX, int screenY, Level level){
         super(context);
+
+        this.level = new Level(level);
+
         this.context= context;
         this.screenX = screenX;
         this.screenY = screenY;
@@ -61,19 +63,14 @@ public class GameView extends SurfaceView implements Runnable {
         paint.setColor(Color.WHITE);
 
 
-        //randomstone = new Random().nextInt((max-min)+1)+min;
-        // Log.d("howlives", randomstone+"");
-
-        randomfood = new Random().nextInt((max-min)+1)+min;
-
-        for(int i = 0; i< randomstone; i++){
-            stones.add(new Stone(getResources()));
+        for(int i = 0; i< level.getStoneAmount(); i++){
+            Log.d("test",level.getStonepic()+"");
+            stones.add(new Stone(getResources(),level.getStonepic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
         }
 
-        for(int i = 0; i< randomfood; i++){
-            foods.add(new Food(getResources()));
+        for(int i = 0; i< level.getFoodAmount(); i++){
+            foods.add(new Food(getResources(),level.getFoodpic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
         }
-
     }
 
     @Override
@@ -99,25 +96,19 @@ public class GameView extends SurfaceView implements Runnable {
         for (int i=0; i<stones.size();i++){
             stones.get(i).objectUpdate(screenX,screenY);
 
-
             //if stone and fish
-            if(Rect.intersects(stones.get(i).getCollisionShape(), fish.getCollisionShape())){
                 stones.remove(i);
-                lives--;
-                stones.add(new Stone(getResources()));
+                lives = stones.get(i).hit(fish,lives,score);
+                stones.add(new Stone(getResources(),level.getStonepic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
                 if(lives==0)
                     isGameOver=true;
                 return;
             }
-        }
+
         //if fish and food
-        for (Food food : foods) {
+        for (Food food : foods){
             food.objectUpdate(screenX, screenY);
-            if(Rect.intersects(food.getCollisionShape(), fish.getCollisionShape())){
-                score++;
-                food.setX(-500);  //food off the screen
-                food.wasEaten = true;
-            }
+            score = food.hit(fish, lives, score); //if i have collision return 1, else 0
         }
     }
 
@@ -147,7 +138,6 @@ public class GameView extends SurfaceView implements Runnable {
             Bitmap livesRed = BitmapFactory.decodeResource(getResources(), R.drawable.heartred);
             Bitmap livesWhite = BitmapFactory.decodeResource(getResources(),R.drawable.heartwhite);
 
-
             for(int j= 0; j<lives ; j++){
                 canvas.drawBitmap(livesRed, null, new Rect(this.getWidth()-bounds.width()-60-(3-j)*56, 20, this.getWidth()-bounds.width()-60-(2-j)*56, 61), null);
             }
@@ -155,7 +145,6 @@ public class GameView extends SurfaceView implements Runnable {
             for(int j=lives; j<3 ; j++){
                 canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-60-(3-j)*55, 18, this.getWidth()-bounds.width()-60-(2-j)*55, 59), null);
             }
-
 
             if(isGameOver) {
                 isPlaying = false;
@@ -173,28 +162,29 @@ public class GameView extends SurfaceView implements Runnable {
                         finishDialog.setCancelable(false);
                         finishDialog.show();
 
-//                        ImageButton ok_btn = viewinflater.findViewById(R.id.finish_btn);
-//                        ok_btn.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                EditText entername = viewinflater.findViewById(R.id.edit_name);
-//                                String username = entername.getText().toString();
-//
-//                                if(username.matches(""))
-//                                    Toast.makeText(((Activity) getContext()), "Enter your nickname",Toast.LENGTH_SHORT).show();
-//                                else{
-//                                    Intent intent = new Intent(((Activity) getContext()), ScoreTable.class);
-//                                    ((Activity) getContext()).startActivity(intent);
-//                                    intent.putExtra("score_user",score);
-//                                    intent.putExtra("user_name",username);
-//
-//                                }
-//                            }
-//                        });
-//                        TextView scoreTV = viewinflater.findViewById(R.id.playerscore);
-//                        scoreTV.setText(score+"");
-//                    }
-//                });
+                        ImageButton ok_btn = viewinflater.findViewById(R.id.finish_btn);
+                        ok_btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                EditText entername = viewinflater.findViewById(R.id.edit_name);
+                                String username = entername.getText().toString();
+
+                                if(username.matches(""))
+                                    Toast.makeText(((Activity) getContext()), "Enter your nickname",Toast.LENGTH_SHORT).show();
+                                else{
+                                    Intent intent = new Intent(((Activity) getContext()), ScoreTable.class);
+                                    ((Activity) getContext()).startActivity(intent);
+                                    intent.putExtra("score_user",score);
+                                    intent.putExtra("user_name",username);
+                                    ((Activity)getContext()).startActivity(intent);
+
+                                }
+                            }
+                        });
+                        TextView scoreTV = viewinflater.findViewById(R.id.playerscore);
+                        scoreTV.setText(score+"");
+                    }
+                });
                 return;
             }
 
@@ -241,7 +231,6 @@ public class GameView extends SurfaceView implements Runnable {
                 ydown = event.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                Log.d("movefinger","mmmmm");
                 ymove = event.getY();
                 distanceY = ymove - ydown;
 

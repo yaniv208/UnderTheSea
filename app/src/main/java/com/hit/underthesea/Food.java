@@ -2,14 +2,13 @@ package com.hit.underthesea;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 
 public class Food extends ObjectView {
     Bitmap food;
     public boolean wasEaten = true;
 
-    public Food(Resources res) {
-        super(res, R.drawable.food);
+    public Food(Resources res,int picfood, int minSpeed, int maxSpeed) {
+        super(res, R.drawable.food, minSpeed,maxSpeed);
     }
 
     Bitmap getFood(){
@@ -17,9 +16,15 @@ public class Food extends ObjectView {
 
     }
 
-
-
-    Rect getCollisionShape (){
-        return new Rect(this.getX(), this.getY(), this.getX()+this.getWidth(), this.getY()+this.getHeight());
+    @Override
+    public int hit(Fish fish, int lives, int score) {
+        int resultIntersect = super.hit(fish,lives,score);
+        if(resultIntersect==1) {
+            score++;
+            this.setX(-500);
+            this.wasEaten = true;
+        }
+        return score;
     }
+
 }

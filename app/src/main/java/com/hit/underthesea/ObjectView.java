@@ -3,17 +3,20 @@ package com.hit.underthesea;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.util.Log;
 
 import java.util.Random;
 
 public class ObjectView {
     private int x=0,y, width,height;
     Bitmap object;
-    private int speed,maxSpeed=30,minSpeed=20;
+    private int speed,maxSpeed,minSpeed;
     Random randomstonespeed = new Random();
 
-    public ObjectView(Resources res, int pic) {
-        object = BitmapFactory.decodeResource(res, pic);
+    public ObjectView(Resources res, int pic, int minSpeed, int maxSpeed) {
+        object = BitmapFactory.decodeResource(res,pic);
+        Log.d("test", pic+"");
 
         width = object.getWidth();
         height = object.getHeight();
@@ -31,18 +34,26 @@ public class ObjectView {
     public void objectUpdate(int screenX, int screenY) {
         this.x -= this.speed;
 
-        if (this.x + this.width < 0) {//the stone get new speed
+        if (this.x + this.width < 0) {  //the stone get new speed
             updateSpeed(screenX,screenY);
         }
     }
     public void updateSpeed(int screenX,int screenY){
         //int bound = 30;
         this.speed = randomstonespeed.nextInt((maxSpeed-minSpeed)+1)+minSpeed;
-
         // if (this.speed < 10)
         //   this.speed = (int) (20);
         this.x = screenX;
         this.y = randomstonespeed.nextInt(screenY - this.height);
+    }
+
+    public int hit(Fish fish, int lives, int score){
+        if(Rect.intersects(this.getCollisionShape(), fish.getCollisionShape())) {
+            Log.d("check", "1");
+            return 1;
+        }
+        Log.d("check", "0");
+        return 0;
     }
 
     public int getX() {
@@ -78,4 +89,8 @@ public class ObjectView {
     public void setObject(Bitmap object) { this.object = object; }
 
     public void setSpeed(int speed) { this.speed = speed; }
+
+    Rect getCollisionShape (){
+        return new Rect(this.getX(), this.getY(), this.getX()+this.getWidth(), this.getY()+this.getHeight());
+    }
 }

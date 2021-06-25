@@ -99,7 +99,4 @@
         app:layout_constraintTop_toTopOf="@id/popup_view"
         app:layout_constraintBottom_toBottomOf="@id/popup_view"/>
 
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

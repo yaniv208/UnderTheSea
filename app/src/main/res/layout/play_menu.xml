@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/playback"
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/logo_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="50dp"
         android:src="@drawable/logo"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:layout_gravity="center"/>
+        android:layout_marginBottom="20dp"
+        />
 
     <TextView
+        android:id="@+id/pick"
+        android:layout_below="@+id/logo_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="pick level"
         android:textStyle="bold"
+        android:layout_centerInParent="true"
         android:textSize="20sp"
         android:textColor="@color/white"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:layout_gravity="center"/>
 
     <RelativeLayout
+        android:id="@+id/levels"
+        android:layout_below="@id/pick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:orientation="horizontal">
 
@@ -62,12 +72,34 @@
         android:layout_height="wrap_content" />
     </RelativeLayout>
 
-    <Button
+    <ImageButton
+        android:background="@android:color/transparent"
         android:id="@+id/score_btn"
-        android:backgroundTint="@color/orange"
+        android:layout_below="@id/levels"
+        android:src="@drawable/highscore_btn"
         android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:text="High score table"
         android:layout_gravity="center"/>
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:id="@+id/guidance_button"
+        android:textSize="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:src="@drawable/highscore_btn"
+        android:layout_below="@id/score_btn"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
+        android:text="guidance" />
 
-</LinearLayout>
+    <FrameLayout
+        android:id="@+id/fragment_containerplay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="2dp" />
+
+</RelativeLayout>

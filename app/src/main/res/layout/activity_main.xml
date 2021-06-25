@@ -8,40 +8,8 @@
     tools:context=".MainActivity">
 
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/general_appbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@null"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageButton
-                android:id="@+id/settings_but"
-                android:layout_width="60dp"
-                android:layout_height="50dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/settingbut"/>
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
@@ -49,31 +17,31 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="40dp"
         />
-
-    <ImageButton
-        android:id="@+id/play_button"
-        android:layout_width="237dp"
-        android:layout_height="85dp"
+    <FrameLayout
+        android:layout_below="@+id/logo"
         android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/playbutton"
-        android:text="Play"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/guidance_button"
-        android:textSize="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/green"
-        android:layout_below="@id/play_button"
-        android:layout_marginTop="30dp"
-        android:layout_centerInParent="true"
-        android:text="guidance" />
+        android:layout_height="wrap_content">
+     <ImageButton
+            android:id="@+id/play_button"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:layout_marginTop="60dp"
+            android:background="@null"
+            android:src="@drawable/play_btn" />
+        <TextView
+            android:clickable="false"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PLAY" />
+    </FrameLayout>
+
 
     <ImageView
         android:id="@+id/bubble1"

@@ -141,18 +141,18 @@ public class GameView extends SurfaceView implements Runnable {
             Rect bounds = new Rect();
             scoreText.getTextBounds(myScore, 0, myScore.length(), bounds);
 
-            canvas.drawText(myScore + "", this.getWidth() - bounds.width()-35 , bounds.height()+15 , scoreText);
+            canvas.drawText(myScore + "", this.getWidth() - bounds.width()-720 , bounds.height()+50 , scoreText);
 
             //lives
             Bitmap livesRed = BitmapFactory.decodeResource(getResources(), R.drawable.heartred);
             Bitmap livesWhite = BitmapFactory.decodeResource(getResources(),R.drawable.heartwhite);
 
             for(int j= 0; j<lives ; j++){
-                canvas.drawBitmap(livesRed, null, new Rect(this.getWidth()-bounds.width()-60-(3-j)*56, 20, this.getWidth()-bounds.width()-60-(2-j)*56, 61), null);
+                canvas.drawBitmap(livesRed, null, new Rect(this.getWidth()-bounds.width()-260-(3-j)*56, 60, this.getWidth()-bounds.width()-260-(2-j)*56, 101), null);
             }
 //
             for(int j=lives; j<3 ; j++){
-                canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-60-(3-j)*55, 18, this.getWidth()-bounds.width()-60-(2-j)*55, 59), null);
+                canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-260-(3-j)*55, 58, this.getWidth()-bounds.width()-260-(2-j)*55, 99), null);
             }
 
             if(isGameOver) {

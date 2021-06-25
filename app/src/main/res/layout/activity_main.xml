@@ -7,6 +7,40 @@
     android:background="@drawable/mainback"
     tools:context=".MainActivity">
 
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/general_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageButton
+                android:id="@+id/settings_but"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/settingbut"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,13 +49,6 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="40dp"
         />
-
-    <ImageButton
-        android:id="@+id/setting_button"
-        android:layout_width="56dp"
-        android:layout_height="48dp"
-        android:layout_margin="15dp"
-        android:background="@drawable/settingbut" />
 
     <ImageButton
         android:id="@+id/play_button"

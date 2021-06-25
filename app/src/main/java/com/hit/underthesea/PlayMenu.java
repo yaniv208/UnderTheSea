@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,9 +28,9 @@ public class PlayMenu extends AppCompatActivity implements View.OnClickListener{
             }
         });
 
-        Button easylevel = findViewById(R.id.level1);
-        Button midlevel = findViewById(R.id.level2);
-        Button hardlevel = findViewById(R.id.level3);
+        ImageButton easylevel = findViewById(R.id.level1);
+        ImageButton midlevel = findViewById(R.id.level2);
+        ImageButton hardlevel = findViewById(R.id.level3);
         easylevel.setOnClickListener(this);
         midlevel.setOnClickListener(this);
         hardlevel.setOnClickListener(this);

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         startService(new Intent(this, MusicService.class));
 
-        ImageButton setting = findViewById(R.id.setting_button);
+        ImageButton setting = findViewById(R.id.settings_but);
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

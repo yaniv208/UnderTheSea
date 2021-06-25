@@ -1,12 +1,20 @@
 package com.hit.underthesea;
 
+import android.app.Activity;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -33,7 +41,31 @@ public class GameActivity extends AppCompatActivity {
 
         gameView = new GameView(this, point.x,point.y, levels.get(levelNum-1));
 
+//        FloatingActionButton settings = new FloatingActionButton(this);
+//        settings.setId(View.generateViewId());
+//        settings.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("DEBUG", "onFabFoo");
+//            }
+//        });
+//        settings.setImageResource(R.drawable.settingbut);
+//        settings.setElevation(2);
+//        settings.setSize(FloatingActionButton.SIZE_MINI);
+//        settings.setFocusable(true);
+//        RelativeLayout.LayoutParams lay = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+//        lay.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//        lay.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+//        lay.setMargins(2,2,2,2);
+//        settings.setLayoutParams(lay);
+//        public FloatingActionButton getFab(Context context, ViewGroup parent) {
+//            LayoutInflater inflater = LayoutInflater.from(this);
+//            return (FloatingActionButton) inflater.inflate(R.layout.settings, parent, false);
+     //   }
+
         setContentView(gameView);
+
     }
 
     @Override

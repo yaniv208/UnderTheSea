@@ -15,11 +15,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hit.underthesea.score.ScoreTable;
 
 import java.util.ArrayList;
@@ -70,6 +73,7 @@ public class GameView extends SurfaceView implements Runnable {
         for(int i = 0; i< level.getFoodAmount(); i++){
             foods.add(new Food(getResources(),level.getFoodpic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
         }
+
     }
 
     @Override

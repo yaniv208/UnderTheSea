@@ -71,6 +71,7 @@
                 android:layout_alignBaseline="@+id/nameplayer"
                 android:layout_margin="10dp"
                 android:textColor="@color/white"
+                android:background="@drawable/edittext_shape"
                 android:layout_toEndOf="@+id/nameplayer"
                 android:hint="Enter your name" />
         </RelativeLayout>

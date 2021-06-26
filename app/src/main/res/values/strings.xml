@@ -2,4 +2,9 @@
     <string name="app_name">Under the sea</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="easy_btn">EASY</string>
+    <string name="medium_btn">MEDIUM</string>
+    <string name="hard_btn">HARD</string>
+    <string name="scoretable_btn">High Score Table</string>
+    <string name="guid_btn">Guidnace</string>
 </resources>

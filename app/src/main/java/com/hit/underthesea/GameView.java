@@ -73,7 +73,6 @@ public class GameView extends SurfaceView implements Runnable {
         for(int i = 0; i< level.getFoodAmount(); i++){
             foods.add(new Food(getResources(),level.getFoodpic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
         }
-
     }
 
     @Override
@@ -141,18 +140,18 @@ public class GameView extends SurfaceView implements Runnable {
             Rect bounds = new Rect();
             scoreText.getTextBounds(myScore, 0, myScore.length(), bounds);
 
-            canvas.drawText(myScore + "", this.getWidth() - bounds.width()-720 , bounds.height()+50 , scoreText);
+            canvas.drawText(myScore + "", this.getWidth() - bounds.width()-screenX/2+40 , bounds.height()+50 , scoreText);
 
             //lives
             Bitmap livesRed = BitmapFactory.decodeResource(getResources(), R.drawable.heartred);
             Bitmap livesWhite = BitmapFactory.decodeResource(getResources(),R.drawable.heartwhite);
 
             for(int j= 0; j<lives ; j++){
-                canvas.drawBitmap(livesRed, null, new Rect(this.getWidth()-bounds.width()-260-(3-j)*56, 60, this.getWidth()-bounds.width()-260-(2-j)*56, 101), null);
+                canvas.drawBitmap(livesRed, null, new Rect(this.getWidth()-bounds.width()-screenX/2-(3-j)*56+30, 60, this.getWidth()-bounds.width()-screenX/2-(2-j)*56+30, 101), null);
             }
 //
             for(int j=lives; j<3 ; j++){
-                canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-260-(3-j)*55, 58, this.getWidth()-bounds.width()-260-(2-j)*55, 99), null);
+                canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-screenX/2-(3-j)*55+30, 58, this.getWidth()-bounds.width()-screenX/2-(2-j)*55+30, 99), null);
             }
 
             if(isGameOver) {
@@ -188,7 +187,6 @@ public class GameView extends SurfaceView implements Runnable {
                                         intent.putExtra("user_name", username);
                                         intent.putExtra("level_name", level.getNumlevel());
                                         ((Activity) getContext()).startActivity(intent);
-
                                     }
                                 }
                             });
@@ -219,10 +217,7 @@ public class GameView extends SurfaceView implements Runnable {
                                 }
                             });
                         }
-
-
                     }
-
                 });
                 return;
             }
@@ -230,11 +225,8 @@ public class GameView extends SurfaceView implements Runnable {
             canvas.drawBitmap(fish.getFish(), fish.x, fish.y, paint);
             for (Stone stone : stones)
                 canvas.drawBitmap(stone.getObject(), stone.getX(), stone.getY(), paint);
-
-
             getHolder().unlockCanvasAndPost(canvas);
         }
-
     }
 
     private void sleep() {

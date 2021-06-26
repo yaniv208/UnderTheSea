@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Under the sea</string>
+    <string name="easy_btn">קל</string>
+    <string name="medium_btn">בינוני</string>
+    <string name="hard_btn">קשה</string>
+    <string name="hello_blank_fragment">\?</string>
+    <string name="scoretable_btn">טבלת שיאים</string>
+    <string name="guid_btn">הדרכה</string>
+</resources>

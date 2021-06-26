@@ -1,10 +1,12 @@
 package com.hit.underthesea;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,13 +41,14 @@ public class GameActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
         Bundle bundle = getIntent().getExtras();
         int levelNum = bundle.getInt("num_level");
         ArrayList<Level> levels = new ArrayList<Level>();
-        levels.add(new Level(3, 5, R.drawable.fishplayer, R.drawable.food, R.drawable.stone,35,30,30,25,"1",52));//level1
-        levels.add(new Level(4, 4, R.drawable.fishlevel2, R.drawable.food, R.drawable.stone, 45,40,40,35,"2",30));//level2
-        levels.add(new Level(5, 3, R.drawable.fishlevel3, R.drawable.food, R.drawable.stone,50,40,40,35,"3",15));//level3
+        levels.add(new Level(3, 5, R.drawable.fishplayer, R.drawable.food, R.drawable.stone,35,30,30,25,"EASY",52));//level1
+        levels.add(new Level(4, 4, R.drawable.fishlevel2, R.drawable.food, R.drawable.stone, 45,40,40,35,"MEDIUM",30));//level2
+        levels.add(new Level(5, 3, R.drawable.fishlevel3, R.drawable.food, R.drawable.stone,50,40,40,35,"HARD",15));//level3
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -60,6 +64,12 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.game_menu,menu);
+
+        //when we close the music on setting and enter the game
+        AudioManager manager = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
+        if(!manager.isMusicActive())
+            menu.findItem(R.id.sound).setIcon(getDrawable(R.drawable.no_sound_button));
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -67,16 +77,17 @@ public class GameActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.home:
+
                 Intent intent = new Intent(this, PlayMenu.class);
                 startActivity(intent);
                 break;
             case R.id.pause:
-                if(item.getIcon().getConstantState().equals(getDrawable(R.drawable.play_button).getConstantState())) {
+                if(item.getIcon().getConstantState().equals(getDrawable(R.drawable.play_game).getConstantState())) {
                     onPostResume();
                     item.setIcon(getDrawable(R.drawable.pause_button));
                 }else {
                     onPause();
-                    item.setIcon(getDrawable(R.drawable.play_button));
+                    item.setIcon(getDrawable(R.drawable.play_game));
                 }
                 break;
             case  R.id.sound:

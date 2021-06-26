@@ -7,10 +7,8 @@ import androidx.annotation.Nullable;
 
 import com.hit.underthesea.R;
 
-public class MusicService extends Service
-{
+public class MusicService extends Service {
     MediaPlayer mediaPlayer;
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
         mediaPlayer = MediaPlayer.create(this, R.raw.background_music);
@@ -39,4 +37,5 @@ public class MusicService extends Service
 
 
 }
+
 

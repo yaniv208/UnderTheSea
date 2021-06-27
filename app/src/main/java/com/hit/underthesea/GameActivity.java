@@ -1,5 +1,7 @@
 package com.hit.underthesea;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,15 +9,22 @@ import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.hit.underthesea.score.ScoreTable;
 
 import java.util.ArrayList;
 
@@ -67,9 +76,34 @@ public class GameActivity extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.home:
-                Intent intent = new Intent(this, PlayMenu.class);
-                startActivity(intent);
-                finish();
+                gameView.pause();
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+                LayoutInflater inflater = this.getLayoutInflater();
+                View viewinflater = inflater.inflate(R.layout.exit_game, null);
+                builder.setView(viewinflater);
+                AlertDialog exitDialog = builder.create();
+                exitDialog.setCancelable(false);
+                exitDialog.show();
+
+                ImageButton yes_btn = viewinflater.findViewById(R.id.yes_exit);
+                yes_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        exitDialog.dismiss();
+                        Intent intent = new Intent(GameActivity.this, PlayMenu.class);
+                        startActivity(intent);
+                        finish();
+                        }
+                });
+                ImageButton no_btn = viewinflater.findViewById(R.id.no_exit);
+                no_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onPostResume();
+                        exitDialog.dismiss();
+                    }
+                });
+
                 break;
             case R.id.pause:
                 if(item.getIcon().getConstantState().equals(getDrawable(R.drawable.play_game).getConstantState())) {

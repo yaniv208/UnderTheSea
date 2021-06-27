@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
@@ -13,6 +14,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import com.hit.underthesea.fragments.SettingsFragment;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -87,4 +90,33 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onBackPressed(){
+
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View viewinflater = inflater.inflate(R.layout.exit_game, null);
+        builder.setView(viewinflater);
+        AlertDialog exitDialog = builder.create();
+        exitDialog.setCancelable(false);
+        exitDialog.show();
+
+        ImageButton yes_btn = viewinflater.findViewById(R.id.yes_exit);
+        yes_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exitDialog.dismiss();
+                Intent a = new Intent(Intent.ACTION_MAIN);
+                a.addCategory(Intent.CATEGORY_HOME);
+                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(a);
+            }
+        });
+        ImageButton no_btn = viewinflater.findViewById(R.id.no_exit);
+        no_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exitDialog.dismiss();
+            }
+        });
+    }
 }

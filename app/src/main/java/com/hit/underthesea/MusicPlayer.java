@@ -35,13 +35,12 @@ public class MusicPlayer {
             }
 
             public void pause(boolean byUser) {
-                Log.d("byuser paused",byUser+"");
-                pausedByUser = byUser;
+                if(byUser)
+                    pausedByUser = true;
                 this.mediaPlayer.pause();
            }
 
            public void pausedByUser (){
                 pausedByUser = true;
            }
-
         }

@@ -1,13 +1,17 @@
 package com.hit.underthesea.score;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -108,5 +112,11 @@ public class ScoreTable extends BaseActivity {
                 }
             });
         }
+    }
+
+    public void onBackPressed(){
+        Intent intent = new Intent(this, PlayMenu.class);
+        startActivity(intent);
+        finish();
     }
 }

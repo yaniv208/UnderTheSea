@@ -1,6 +1,8 @@
 package com.hit.underthesea.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
@@ -45,13 +47,20 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         Button howToPlay = view.findViewById(R.id.howToPlay_btn);
         Button credit = view.findViewById(R.id.credit_btn);
         SwitchMaterial music = view.findViewById(R.id.switchmusic_btn);
+
+        //save off mode of switch
+        AudioManager manager = (AudioManager)getActivity().getSystemService(Context.AUDIO_SERVICE);
+        if(!manager.isMusicActive())
+            music.setChecked(false);
+
         music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b)
                     MusicPlayer.getInstance().play(true);
-                else
+                else{
                     MusicPlayer.getInstance().pause(true);
+                }
             }
         });
         howToPlay.setOnClickListener(this);

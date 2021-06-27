@@ -181,12 +181,14 @@ public class GameView extends SurfaceView implements Runnable {
                                     if (username.matches(""))
                                         Toast.makeText(((Activity) getContext()), "Enter your nickname", Toast.LENGTH_SHORT).show();
                                     else {
+                                        finishDialog.dismiss();
                                         Intent intent = new Intent(((Activity) getContext()), ScoreTable.class);
                                         ((Activity) getContext()).startActivity(intent);
                                         intent.putExtra("score_user", score);
                                         intent.putExtra("user_name", username);
                                         intent.putExtra("level_name", level.getNumlevel());
                                         ((Activity) getContext()).startActivity(intent);
+                                        ((Activity) getContext()).finish();
                                     }
                                 }
                             });
@@ -211,9 +213,11 @@ public class GameView extends SurfaceView implements Runnable {
                             okloser_btn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    finishDialog.dismiss();
 
                                     Intent intent = new Intent(((Activity) getContext()), PlayMenu.class);
                                     ((Activity) getContext()).startActivity(intent);
+                                    ((Activity) getContext()).finish();
                                 }
                             });
                         }

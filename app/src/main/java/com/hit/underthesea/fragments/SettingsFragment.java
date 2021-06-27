@@ -16,6 +16,7 @@ import android.widget.Switch;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.hit.underthesea.MainActivity;
+import com.hit.underthesea.MusicPlayer;
 import com.hit.underthesea.R;
 import com.hit.underthesea.model.InfoData;
 
@@ -48,9 +49,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b)
-                    getActivity().startService(new Intent(getActivity(), MainActivity.class));
+                    MusicPlayer.getInstance().play(true);
                 else
-                    getActivity().stopService(new Intent(getActivity(), MainActivity.class));
+                    MusicPlayer.getInstance().pause(true);
             }
         });
         howToPlay.setOnClickListener(this);

@@ -1,39 +1,28 @@
 package com.hit.underthesea;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import com.hit.underthesea.fragments.SettingsFragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
-import android.widget.TextView;
 
-import com.hit.underthesea.fragments.MusicService;
-import com.hit.underthesea.fragments.SettingsFragment;
-import com.hit.underthesea.score.ScoreTable;
 
-import java.util.zip.Inflater;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     MediaPlayer mediaPlayer;
 
 
@@ -66,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         set1.playTogether(animator,animator2);
         set1.start();
 
-        startService(new Intent(this, MusicService.class));
+        //startService(new Intent(this, MusicService.class));
+        MusicPlayer.getInstance().initialize(this);
 
 
         ImageButton playbtn = findViewById(R.id.play_button);
@@ -97,18 +87,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
 }

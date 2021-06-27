@@ -3,6 +3,7 @@ package com.hit.underthesea;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,7 +24,7 @@ import com.hit.underthesea.fragments.SettingsFragment;
 import com.hit.underthesea.score.ScoreTable;
 
 
-public class PlayMenu extends AppCompatActivity implements View.OnClickListener{
+public class PlayMenu extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,5 +117,10 @@ public class PlayMenu extends AppCompatActivity implements View.OnClickListener{
         Intent intent = new Intent(PlayMenu.this, GameActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
     }
 }

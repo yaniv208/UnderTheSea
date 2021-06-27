@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.hit.underthesea.BaseActivity;
 import com.hit.underthesea.PlayMenu;
 import com.hit.underthesea.R;
 import com.hit.underthesea.fragments.SettingsFragment;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class ScoreTable extends AppCompatActivity {
+public class ScoreTable extends BaseActivity {
 
     ArrayList<Score> scores;
     @Override
@@ -70,6 +71,7 @@ public class ScoreTable extends AppCompatActivity {
         if(item.getItemId()==R.id.home_score){
             Intent intent = new Intent(this, PlayMenu.class);
             startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

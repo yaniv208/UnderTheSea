@@ -1,6 +1,5 @@
 package com.hit.underthesea;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,28 +7,19 @@ import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.hit.underthesea.fragments.MusicService;
-import com.hit.underthesea.fragments.SettingsFragment;
-
 import java.util.ArrayList;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends BaseActivity {
 
     private GameView gameView;
     ImageView fishPlayer;
@@ -46,7 +36,7 @@ public class GameActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         int levelNum = bundle.getInt("num_level");
         ArrayList<Level> levels = new ArrayList<Level>();
-        levels.add(new Level(3, 5, R.drawable.fishplayer, R.drawable.food, R.drawable.stone,35,30,30,25,"EASY",52));//level1
+        levels.add(new Level(3, 5, R.drawable.fishplayer, R.drawable.food, R.drawable.stone,35,30,30,25,"EASY",10));//level1
         levels.add(new Level(4, 4, R.drawable.fishlevel2, R.drawable.food, R.drawable.stone, 45,40,40,35,"MEDIUM",30));//level2
         levels.add(new Level(5, 3, R.drawable.fishlevel3, R.drawable.food, R.drawable.stone,50,40,40,35,"HARD",15));//level3
 
@@ -77,25 +67,27 @@ public class GameActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.home:
-
                 Intent intent = new Intent(this, PlayMenu.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.pause:
                 if(item.getIcon().getConstantState().equals(getDrawable(R.drawable.play_game).getConstantState())) {
                     onPostResume();
+                    MusicPlayer.getInstance().play(true);
                     item.setIcon(getDrawable(R.drawable.pause_button));
                 }else {
                     onPause();
+                    MusicPlayer.getInstance().play(true);
                     item.setIcon(getDrawable(R.drawable.play_game));
                 }
                 break;
             case  R.id.sound:
                 if(item.getIcon().getConstantState().equals(getDrawable(R.drawable.no_sound_button).getConstantState())) {
-                    startService(new Intent(this, MusicService.class));
+                    MusicPlayer.getInstance().play(true);
                     item.setIcon(getDrawable(R.drawable.sound_button));
                 } else {
-                    stopService(new Intent(this, MusicService.class));
+                    MusicPlayer.getInstance().pause(true);
                     item.setIcon(getDrawable(R.drawable.no_sound_button));
                 }
                 break;

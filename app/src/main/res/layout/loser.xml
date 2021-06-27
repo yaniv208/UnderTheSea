@@ -23,7 +23,8 @@
             android:layout_margin="10dp"/>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true">
 
@@ -31,7 +32,7 @@
                 android:id="@+id/yourscoreloser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginEnd="10dp"
                 android:text="Your score : "
                 android:textColor="@color/white"
                 android:textSize="25sp"
@@ -45,8 +46,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/yourscoreloser"
-                android:layout_alignBaseline="@+id/yourscore"
-                android:layout_margin="10dp"
+                android:layout_alignBaseline="@+id/yourscoreloser"
+                android:layout_marginStart="10dp"
                 android:text="0" />
         </RelativeLayout>
 
@@ -58,7 +59,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true">
 

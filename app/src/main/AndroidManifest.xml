@@ -9,7 +9,6 @@
         android:roundIcon="@drawable/iconapp"
         android:supportsRtl="true"
         android:theme="@style/Theme.UnderTheSea">
-        <activity android:name=".BaseActivity"></activity>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Under the sea</string>
+    <string name="app_name">Under The Sea</string>
     <string name="easy_btn">קל</string>
     <string name="medium_btn">בינוני</string>
     <string name="hard_btn">קשה</string>
     <string name="hello_blank_fragment">\?</string>
-    <string name="scoretable_btn">טבלת שיאים</string>
-    <string name="guid_btn">הדרכה</string>
+    <string name="score_table_btn">טבלת שיאים</string>
+    <string name="guidance_btn">הדרכה</string>
+    <string name="next_btn">הבא</string>
+    <string name="finish_btn">סיים</string>
+    <string name="how_to_play">איך לשחק?</string>
+    <string name="music_toggle">מוסיקה:</string>
+    <string name="settings">הגדרות</string>
+    <string name="credits">קרדיטים</string>
+    <string name="guidance_first_text">הזז את האצבע למעלה ולמטה</string>
+    <string name="name">שם</string>
+    <string name="level">רמה</string>
+    <string name="score">תוצאה</string>
+    <string name="enter_nickname">הזן את שמך!</string>
+    <string name="home">בית</string>
+    <string name="leave">האם אתה בטוח שברצונך לעזוב?</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="save">שמור</string>
+    <string name="play">שחק</string>
+    <string name="sound">סאונד:</string>
+    <string name="pause">הפסקה</string>
+    <string name="your_score_is_text">התוצאה שלך היא:</string>
+    <string name="enter_your_name">הזן את שמך</string>
+    <string name="ok_btn">אוקיי</string>
+    <string name="guide_first">הזז את הדמות עם האצבע למעלה ולמטה.</string>
+    <string name="didnt_reach">לא קיבלת מספיק נקודות כדי להכנס לטבלת השיאים</string>
+    <string name="guide_second">זוז עם הדג לכיוון האוכל ואסוף נקודות.</string>
+    <string name="guide_third">הימנע ממכשולים.</string>
+    <string name="try_again">נסה שוב</string>
+    <string name="you_need_more">אתה צריך עוד:</string>
+    <string name="howtoplay_explaination">ראשית, בחר דרגת קושי. המטרה המרכזית במשחק היא לאסוף כמה שיותר נקודות על ידי אכילת אוכל, תוך התחמקות ממכשולים וניסיון לשבירת השיאים הקיימים.</string>
+    <string name="your_name_tv">השם שלך:</string>
 </resources>

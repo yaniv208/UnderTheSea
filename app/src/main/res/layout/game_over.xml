@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -13,13 +11,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@drawable/backgroundgameover">
+        android:background="@drawable/background_game_over">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/gameover"
-            android:id="@+id/gameover"
+            android:id="@+id/game_over"
             android:layout_margin="20dp"/>
 
         <RelativeLayout
@@ -29,26 +27,25 @@
             android:layout_centerInParent="true">
 
             <TextView
-                android:id="@+id/yourscore"
+                android:id="@+id/your_score"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Your score : "
+                android:text="@string/your_score_is_text"
                 android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="25sp" />
 
             <TextView
-                android:id="@+id/playerscore"
+                android:id="@+id/player_score"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
                 android:textSize="25sp"
-                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/yourscore"
-                android:layout_alignBaseline="@+id/yourscore"
-                android:layout_margin="10dp"
-                android:text="0" />
+                android:layout_toEndOf="@+id/your_score"
+                android:layout_alignBaseline="@+id/your_score"
+                android:layout_margin="10dp"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -57,24 +54,26 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/nameplayer"
+                android:id="@+id/player_name"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Name:"
+                android:text="@string/your_name_tv"
                 android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="25sp"/>
 
             <EditText
                 android:id="@+id/edit_name"
+                android:inputType="text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/nameplayer"
+                android:layout_alignBaseline="@+id/player_name"
                 android:layout_margin="10dp"
                 android:textColor="@color/white"
                 android:background="@drawable/edittext_shape"
-                android:layout_toEndOf="@+id/nameplayer"
-                android:hint="Enter your name" />
+                android:layout_toEndOf="@+id/player_name"
+                android:hint="@string/enter_your_name"
+                android:importantForAutofill="no" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -93,8 +92,9 @@
                 android:src="@drawable/ok_button_gameover"/>
             <TextView
                 android:clickable="false"
-                android:text="ok"
-                android:textSize="25dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+                android:text="@string/ok_btn"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_gravity="center"

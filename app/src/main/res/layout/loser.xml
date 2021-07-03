@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -13,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@drawable/backgroundgameover">
+        android:background="@drawable/background_game_over">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -29,24 +27,24 @@
             android:layout_centerInParent="true">
 
             <TextView
-                android:id="@+id/yourscoreloser"
+                android:id="@+id/your_score_loser"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="Your score : "
+                android:text="@string/your_score_is_text"
                 android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="25sp"/>
 
             <TextView
-                android:id="@+id/playerscoreloser"
+                android:id="@+id/player_score_loser"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/yourscoreloser"
-                android:layout_alignBaseline="@+id/yourscoreloser"
+                android:layout_toEndOf="@+id/your_score_loser"
+                android:layout_alignBaseline="@+id/your_score_loser"
                 android:layout_marginStart="10dp"
                 android:text="0" />
         </RelativeLayout>
@@ -54,10 +52,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You don't reach high score to your level"
+                android:text="@string/didnt_reach"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="15sp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+                />
         <RelativeLayout
             android:layout_width="match_parent"
             android:gravity="center"
@@ -69,10 +68,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="you need more : "
+                android:text="@string/you_need_more"
                 android:textColor="@color/white"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+                android:textSize="20sp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1" />
 
             <TextView
                 android:id="@+id/miss_score"
@@ -89,11 +88,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Try again"
+            android:text="@string/try_again"
             android:layout_marginBottom="15dp"
             android:textColor="@color/white"
-            android:textSize="19sp"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"/>
 
 
         <RelativeLayout
@@ -101,7 +100,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:layout_centerInParent="true"
             android:id="@+id/ok_but">
             <ImageButton
                 android:id="@+id/ok_loser"
@@ -112,8 +110,9 @@
                 android:src="@drawable/ok_button_gameover"/>
             <TextView
                 android:clickable="false"
-                android:text="ok"
-                android:textSize="25dp"
+                android:text="@string/ok_btn"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_gravity="center"

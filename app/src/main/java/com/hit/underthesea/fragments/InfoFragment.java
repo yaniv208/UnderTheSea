@@ -1,20 +1,17 @@
 package com.hit.underthesea.fragments;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.transition.TransitionInflater;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.hit.underthesea.R;
 import com.hit.underthesea.model.InfoData;
 
+import java.util.Objects;
 
 public class InfoFragment extends Fragment {
 
@@ -27,7 +24,6 @@ public class InfoFragment extends Fragment {
     public InfoFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +47,7 @@ public class InfoFragment extends Fragment {
         exitInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().popBackStack();
+                Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
             }
         });
 

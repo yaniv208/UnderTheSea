@@ -3,10 +3,8 @@ package com.hit.underthesea.score;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import java.util.ArrayList;
 
 public class ScoreHandler {
@@ -50,7 +48,6 @@ public class ScoreHandler {
             e.printStackTrace();
         }
         return null;
-
     }
 
 }

@@ -4,20 +4,17 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
-import android.util.Log;
 
 import java.util.Random;
 
 public class ObjectView {
-    private int x=0,y, width,height;
+    private int x = 0, y, width, height;
+    private int speed, maxSpeed, minSpeed;
+    Random randomStoneSpeed = new Random();
     Bitmap object;
-    private int speed,maxSpeed,minSpeed;
-    Random randomstonespeed = new Random();
 
     public ObjectView(Resources res, int pic, int minSpeedS, int maxSpeedS) {
-
         object = BitmapFactory.decodeResource(res,pic);
-
         this.maxSpeed = maxSpeedS;
         this.minSpeed = minSpeedS;
 
@@ -25,22 +22,22 @@ public class ObjectView {
         height = object.getHeight();
 
         width /= 2.5;
-        height /=2.5;
+        height /= 2.5;
 
         object = Bitmap.createScaledBitmap(object, width, height,false);
-        this.speed = randomstonespeed.nextInt((maxSpeed-minSpeed)+1)+minSpeed;
+        this.speed = randomStoneSpeed.nextInt((maxSpeed-minSpeed)+1)+minSpeed;
 
-        y = -height;
+        y =- height;
 
     }
 
     public void objectUpdate(int screenX, int screenY) {
         this.x -= this.speed;
 
-        if (this.x + this.width < 0) {  //the stone get new speed
-            this.speed = randomstonespeed.nextInt((maxSpeed-minSpeed)+1)+minSpeed;
+        if (this.x + this.width < 0) {  // Here, the stone gets new speed
+            this.speed = randomStoneSpeed.nextInt((maxSpeed-minSpeed) + 1) + minSpeed;
             this.x = screenX;
-            this.y = randomstonespeed.nextInt(screenY - this.height);
+            this.y = randomStoneSpeed.nextInt(screenY - this.height);
         }
     }
 
@@ -51,13 +48,9 @@ public class ObjectView {
         return 0;
     }
 
-    public int getX() {
-        return x;
-    }
+    public int getX() { return x; }
 
-    public int getY() {
-        return y;
-    }
+    public int getY() { return y; }
 
     public int getWidth() {
         return width;
@@ -85,7 +78,8 @@ public class ObjectView {
 
     public void setSpeed(int speed) { this.speed = speed; }
 
-    Rect getCollisionShape (){
-        return new Rect(this.getX(), this.getY(), this.getX()+this.getWidth(), this.getY()+this.getHeight());
+    Rect getCollisionShape () {
+        return new Rect(this.getX(), this.getY(), this.getX() + this.getWidth(), this.getY() + this.getHeight());
     }
+
 }

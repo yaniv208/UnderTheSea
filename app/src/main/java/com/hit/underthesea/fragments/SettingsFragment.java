@@ -1,27 +1,20 @@
 package com.hit.underthesea.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.transition.TransitionInflater;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
-
 import com.google.android.material.switchmaterial.SwitchMaterial;
-import com.hit.underthesea.MainActivity;
 import com.hit.underthesea.MusicPlayer;
 import com.hit.underthesea.R;
 import com.hit.underthesea.model.InfoData;
-
+import java.util.Objects;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
@@ -29,7 +22,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public SettingsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,17 +38,17 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.settings, container, false);
         Button howToPlay = view.findViewById(R.id.howToPlay_btn);
         Button credit = view.findViewById(R.id.credit_btn);
-        SwitchMaterial music = view.findViewById(R.id.switchmusic_btn);
+        SwitchMaterial music = view.findViewById(R.id.switch_music_btn);
 
-        //save off mode of switch
-        AudioManager manager = (AudioManager)getActivity().getSystemService(Context.AUDIO_SERVICE);
+        // Saving "off" state of switch
+        AudioManager manager = (AudioManager) Objects.requireNonNull(getActivity()).getSystemService(Context.AUDIO_SERVICE);
         if(!manager.isMusicActive())
             music.setChecked(false);
 
         music.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
+            public void onCheckedChanged(CompoundButton compoundButton, boolean bool) {
+                if(bool)
                     MusicPlayer.getInstance().play(true);
                 else{
                     MusicPlayer.getInstance().pause(true);
@@ -68,11 +60,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.exit_setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //כאשר לוחצים על האיקס, הוא יוצא מהפרגמנט וחוזר למסך הראשי
-                getActivity().getSupportFragmentManager().popBackStack();
+                // When X pressed, we exit from fragment into the main screen
+                Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
             }
         });
-        //אחרי שניפחנו יצרנו והחזרנו למערכת ההפעלה להצגה כמסך של הפרגמנט
+        // After the inflation, we return the view to show it as the fragment screen
         return view;
     }
 
@@ -80,17 +72,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         InfoFragment fragment = new InfoFragment();
 
-        //מברר איזה מידע צריך להעביר
+        // Which data would be shown
         switch (v.getId()) {
             case R.id.howToPlay_btn:
-                fragment.setInfoData(new InfoData("How to play", "alvcflvfvn;vr"));
+                fragment.setInfoData(new InfoData(getString(R.string.how_to_play), getString(R.string.howtoplay_explaination)));
                 break;
             case R.id.credit_btn:
-                fragment.setInfoData(new InfoData("Credit", "alvcflvfvn;vr"));
+                fragment.setInfoData(new InfoData(getString(R.string.credits), getString(R.string.credits_explaination)));
                 break;
         }
-        //יוצרים פרגמנט חדש ומעבירים את המידע שקיבלנו מהבירור
-
+        // Creating new fragment and transferring the chosen information
         getChildFragmentManager().beginTransaction().add(R.id.child_container, fragment, null).commit();
     }
 

@@ -1,8 +1,6 @@
 package com.hit.underthesea;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -14,7 +12,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import com.hit.underthesea.fragments.SettingsFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,19 +21,18 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.util.Objects;
 
 public class MainActivity extends BaseActivity {
     MediaPlayer mediaPlayer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         ImageView imageView=findViewById(R.id.bubble1);
@@ -58,13 +54,11 @@ public class MainActivity extends BaseActivity {
         set1.playTogether(animator,animator2);
         set1.start();
 
-        //startService(new Intent(this, MusicService.class));
+        // startService(new Intent(this, MusicService.class));
         MusicPlayer.getInstance().initialize(this);
 
-
-        ImageButton playbtn = findViewById(R.id.play_button);
-
-        playbtn.setOnClickListener(new View.OnClickListener() {
+        ImageButton playBtn = findViewById(R.id.play_button);
+        playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this , PlayMenu.class);
@@ -83,35 +77,33 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.actions_set){
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new SettingsFragment(), null).addToBackStack("Settings").commit();
-
             return true;
-
         }
         return super.onOptionsItemSelected(item);
     }
 
     public void onBackPressed(){
-
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        View viewinflater = inflater.inflate(R.layout.exit_game, null);
-        builder.setView(viewinflater);
+        View viewInflater = inflater.inflate(R.layout.exit_game, null);
+        builder.setView(viewInflater);
         AlertDialog exitDialog = builder.create();
         exitDialog.setCancelable(false);
         exitDialog.show();
 
-        ImageButton yes_btn = viewinflater.findViewById(R.id.yes_exit);
+        ImageButton yes_btn = viewInflater.findViewById(R.id.yes_exit);
         yes_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 exitDialog.dismiss();
-                Intent a = new Intent(Intent.ACTION_MAIN);
-                a.addCategory(Intent.CATEGORY_HOME);
-                a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(a);
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
-        ImageButton no_btn = viewinflater.findViewById(R.id.no_exit);
+
+        ImageButton no_btn = viewInflater.findViewById(R.id.no_exit);
         no_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

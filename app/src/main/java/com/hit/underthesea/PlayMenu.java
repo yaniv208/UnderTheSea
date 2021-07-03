@@ -3,7 +3,6 @@ package com.hit.underthesea;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,26 +11,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.hit.underthesea.fragments.FirstGuidanceFragment;
 import com.hit.underthesea.fragments.SettingsFragment;
 import com.hit.underthesea.score.ScoreTable;
 
+import java.util.Objects;
 
 public class PlayMenu extends BaseActivity implements View.OnClickListener{
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_menu);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
@@ -68,8 +64,8 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
         set3.playTogether(animator3scaleX,animator3scaleY);
         set3.start();
 
-        ImageButton scorebtn = findViewById(R.id.score_btn);
-        scorebtn.setOnClickListener(new View.OnClickListener() {
+        ImageButton scoreBtn = findViewById(R.id.score_btn);
+        scoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PlayMenu.this , ScoreTable.class);
@@ -77,15 +73,22 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
             }
         });
 
+        ImageButton easyLevel = findViewById(R.id.level1);
+        ImageButton medLevel = findViewById(R.id.level2);
+        ImageButton hardLevel = findViewById(R.id.level3);
+        ImageButton guidanceFragments = findViewById(R.id.guidance_button);
+        easyLevel.setOnClickListener(this);
+        medLevel.setOnClickListener(this);
+        hardLevel.setOnClickListener(this);
 
-        ImageButton easylevel = findViewById(R.id.level1);
-        ImageButton midlevel = findViewById(R.id.level2);
-        ImageButton hardlevel = findViewById(R.id.level3);
-        easylevel.setOnClickListener(this);
-        midlevel.setOnClickListener(this);
-        hardlevel.setOnClickListener(this);
-
+        guidanceFragments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new FirstGuidanceFragment(), null).addToBackStack("First Guidance").commit();
+            }
+        });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_settings,menu);
@@ -93,34 +96,34 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.actions_set){
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new SettingsFragment(), null).addToBackStack("Settings").commit();
-
             return true;
-
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onClick(View view) {
-        int numberlevel=1;
-        if(view.getId()==R.id.level2)
-            numberlevel = 2;
-        else if(view.getId()==R.id.level3){
-            numberlevel=3;
+        int numberLevel=1;
+        if(view.getId() == R.id.level2)
+            numberLevel = 2;
+        else if(view.getId() == R.id.level3){
+            numberLevel=3;
         }
 
         Bundle bundle = new Bundle();
-        bundle.putInt("num_level", numberlevel);
+        bundle.putInt("num_level", numberLevel);
         Intent intent = new Intent(PlayMenu.this, GameActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
     }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
     }
+
 }

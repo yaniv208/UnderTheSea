@@ -1,10 +1,40 @@
 <resources>
-    <string name="app_name">Under the sea</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Under The Sea</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="easy_btn">EASY</string>
-    <string name="medium_btn">MEDIUM</string>
-    <string name="hard_btn">HARD</string>
-    <string name="scoretable_btn">High Score Table</string>
-    <string name="guid_btn">Guidnace</string>
+    <string name="easy_btn">Easy</string>
+    <string name="medium_btn">Medium</string>
+    <string name="hard_btn">Hard</string>
+    <string name="score_table_btn">High Score Table</string>
+    <string name="guidance_btn">Guidance</string>
+    <string name="next_btn">Next</string>
+    <string name="finish_btn">Finish</string>
+    <string name="how_to_play">How to play</string>
+    <string name="music_toggle">Music:</string>
+    <string name="settings">Settings</string>
+    <string name="credits">Credits</string>
+    <string name="guidance_first_text">Move the character with your finger up and down</string>
+    <string name="name">Name</string>
+    <string name="level">Level</string>
+    <string name="score">Score</string>
+    <string name="enter_nickname">Enter your nickname!</string>
+    <string name="home">Home</string>
+    <string name="leave">Are you sure you want to leave?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save">Save</string>
+    <string name="play">Play</string>
+    <string name="sound">Sound</string>
+    <string name="pause">Pause</string>
+    <string name="your_score_is_text">Your score is:</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="ok_btn">OK</string>
+    <string name="guide_first">Move the character with your finger up and down.</string>
+    <string name="didnt_reach">You didn\'t get enough points to get into the high score table</string>
+    <string name="guide_second">Move with the fish towards the food and collect points.</string>
+    <string name="guide_third">Avoid obstacles.</string>
+    <string name="try_again">Try again</string>
+    <string name="you_need_more">You need more:</string>
+    <string name="howtoplay_explaination">First, choose a difficulty level. The main goal of the game is collecting as much points as possible while avoiding different obstacles, and trying to beat the high score.</string>
+    <string name="credits_explaination" translatable="false">Background music: Monkeys Spinning Monkeys Kevin MacLeod, Licensed under Creative Commons: By Attribution 3.0 License</string>
+    <string name="your_name_tv">Your name:</string>
 </resources>

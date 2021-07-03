@@ -7,7 +7,6 @@
     android:background="@drawable/mainback"
     tools:context=".MainActivity">
 
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
@@ -32,8 +31,9 @@
             android:background="@null"
             android:src="@drawable/small_start_btn2" />
         <TextView
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
             android:clickable="false"
-            android:textSize="30dp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginTop="30dp"
             android:textColor="@color/white"
@@ -41,9 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="PLAY" />
+            android:text="@string/play" />
     </RelativeLayout>
-
 
     <ImageView
         android:id="@+id/bubble1"

@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
 public class Fish {
-
     int width, height, wingCounter=0;
     int x,y;
     Bitmap fish, dead;
@@ -17,20 +16,18 @@ public class Fish {
         width = fish.getWidth();
         height = fish.getHeight();
 
-        width /=7;
-        height /=7;
+        width /= 7;
+        height /= 7;
 
         fish = Bitmap.createScaledBitmap(fish, width, height,false);
 
-        dead = BitmapFactory.decodeResource(res, R.drawable.fishplayer);
+        dead = BitmapFactory.decodeResource(res, R.drawable.fish_player);
         dead = Bitmap.createScaledBitmap(fish, width, height,false);
 
     }
 
     Bitmap getFish(){
-
         return fish;
-
     }
 
     Rect getCollisionShape (){

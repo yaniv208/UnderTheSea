@@ -1,6 +1,5 @@
 package com.hit.underthesea;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,24 +8,15 @@ import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.hit.underthesea.score.ScoreTable;
-
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GameActivity extends BaseActivity {
 
@@ -34,18 +24,18 @@ public class GameActivity extends BaseActivity {
     ImageView fishPlayer;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(Objects.requireNonNull(getSupportActionBar())).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
         Bundle bundle = getIntent().getExtras();
         int levelNum = bundle.getInt("num_level");
         ArrayList<Level> levels = new ArrayList<Level>();
-        levels.add(new Level(3, 5, R.drawable.fishplayer, R.drawable.food, R.drawable.stone,35,30,30,25,"EASY",10));//level1
+        levels.add(new Level(3, 5, R.drawable.fish_player, R.drawable.food, R.drawable.stone,35,30,30,25,"EASY",10));//level1
         levels.add(new Level(4, 4, R.drawable.fishlevel2, R.drawable.food, R.drawable.stone, 45,40,40,35,"MEDIUM",30));//level2
         levels.add(new Level(5, 3, R.drawable.fishlevel3, R.drawable.food, R.drawable.stone,50,40,40,35,"HARD",15));//level3
 
@@ -64,7 +54,7 @@ public class GameActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.game_menu,menu);
 
-        //when we close the music on setting and enter the game
+        // Changing the music toggle from settings and entering the game
         AudioManager manager = (AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
         if(!manager.isMusicActive())
             menu.findItem(R.id.sound).setIcon(getDrawable(R.drawable.no_sound_button));
@@ -73,19 +63,19 @@ public class GameActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.home:
                 gameView.pause();
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
                 LayoutInflater inflater = this.getLayoutInflater();
-                View viewinflater = inflater.inflate(R.layout.exit_game, null);
-                builder.setView(viewinflater);
+                View viewInflater = inflater.inflate(R.layout.exit_game, null);
+                builder.setView(viewInflater);
                 AlertDialog exitDialog = builder.create();
                 exitDialog.setCancelable(false);
                 exitDialog.show();
 
-                ImageButton yes_btn = viewinflater.findViewById(R.id.yes_exit);
+                ImageButton yes_btn = viewInflater.findViewById(R.id.yes_exit);
                 yes_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -95,7 +85,7 @@ public class GameActivity extends BaseActivity {
                         finish();
                         }
                 });
-                ImageButton no_btn = viewinflater.findViewById(R.id.no_exit);
+                ImageButton no_btn = viewInflater.findViewById(R.id.no_exit);
                 no_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

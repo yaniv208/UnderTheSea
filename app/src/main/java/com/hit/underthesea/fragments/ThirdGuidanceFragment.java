@@ -43,7 +43,7 @@ public class ThirdGuidanceFragment extends Fragment implements View.OnClickListe
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
+                requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
         return view;

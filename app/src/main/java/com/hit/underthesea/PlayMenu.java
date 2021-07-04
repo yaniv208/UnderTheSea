@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+
+import androidx.fragment.app.Fragment;
+
 import com.hit.underthesea.fragments.FirstGuidanceFragment;
 import com.hit.underthesea.fragments.SettingsFragment;
 import com.hit.underthesea.score.ScoreTable;

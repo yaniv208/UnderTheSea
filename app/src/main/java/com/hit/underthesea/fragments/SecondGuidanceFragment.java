@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-
 import androidx.fragment.app.Fragment;
 import androidx.transition.TransitionInflater;
-
 import com.google.android.material.button.MaterialButton;
 import com.hit.underthesea.R;
 
@@ -43,7 +41,7 @@ public class SecondGuidanceFragment extends Fragment implements View.OnClickList
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
+                requireActivity().getSupportFragmentManager().popBackStack();
                 getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new ThirdGuidanceFragment(), null).addToBackStack("Second Guidance").commit();
             }
         });

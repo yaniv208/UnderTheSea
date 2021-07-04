@@ -41,7 +41,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         SwitchMaterial music = view.findViewById(R.id.switch_music_btn);
 
         // Saving "off" state of switch
-        AudioManager manager = (AudioManager) Objects.requireNonNull(getActivity()).getSystemService(Context.AUDIO_SERVICE);
+        AudioManager manager = (AudioManager) requireActivity().getSystemService(Context.AUDIO_SERVICE);
         if(!manager.isMusicActive())
             music.setChecked(false);
 
@@ -61,7 +61,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 // When X pressed, we exit from fragment into the main screen
-                Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
+                requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
         // After the inflation, we return the view to show it as the fragment screen

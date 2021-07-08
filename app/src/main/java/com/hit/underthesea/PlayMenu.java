@@ -85,7 +85,7 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
         guidanceFragments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new FirstGuidanceFragment(), null).addToBackStack("First Guidance").commit();
+                    getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new FirstGuidanceFragment(), null).addToBackStack("First Guidance").commit();
             }
         });
     }

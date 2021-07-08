@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -22,6 +23,7 @@ public class GameActivity extends BaseActivity {
 
     private GameView gameView;
     ImageView fishPlayer;
+    boolean pressHome = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +37,9 @@ public class GameActivity extends BaseActivity {
         Bundle bundle = getIntent().getExtras();
         int levelNum = bundle.getInt("num_level");
         ArrayList<Level> levels = new ArrayList<Level>();
-        levels.add(new Level(3, 5, R.drawable.fish_player, R.drawable.food, R.drawable.stone,35,30,30,25,"EASY",10));//level1
-        levels.add(new Level(4, 4, R.drawable.fishlevel2, R.drawable.food, R.drawable.stone, 45,40,40,35,"MEDIUM",30));//level2
-        levels.add(new Level(5, 3, R.drawable.fishlevel3, R.drawable.food, R.drawable.stone,50,40,40,35,"HARD",15));//level3
+        levels.add(new Level(3, 5, R.drawable.fish_player, R.drawable.food, R.drawable.stone,35,30,30,25,"EASY",30)); //level1
+        levels.add(new Level(4, 4, R.drawable.fishlevel2, R.drawable.food, R.drawable.stone, 45,40,40,35,"MEDIUM",20)); //level2
+        levels.add(new Level(5, 3, R.drawable.fishlevel3, R.drawable.food, R.drawable.stone,50,40,40,35,"HARD",10)); //level3
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -67,6 +69,7 @@ public class GameActivity extends BaseActivity {
         switch (item.getItemId()){
             case R.id.home:
                 gameView.pause();
+                pressHome=true;
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
                 LayoutInflater inflater = this.getLayoutInflater();
                 View viewInflater = inflater.inflate(R.layout.exit_game, null);
@@ -83,12 +86,13 @@ public class GameActivity extends BaseActivity {
                         Intent intent = new Intent(GameActivity.this, PlayMenu.class);
                         startActivity(intent);
                         finish();
-                        }
+                    }
                 });
                 ImageButton no_btn = viewInflater.findViewById(R.id.no_exit);
                 no_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        pressHome = false;
                         onPostResume();
                         exitDialog.dismiss();
                     }
@@ -129,5 +133,7 @@ public class GameActivity extends BaseActivity {
     protected void onPostResume() {
         super.onPostResume();
         gameView.resume();
+        if(pressHome)
+            gameView.pause();
     }
 }

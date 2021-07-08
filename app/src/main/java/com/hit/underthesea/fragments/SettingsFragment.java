@@ -3,18 +3,19 @@ package com.hit.underthesea.fragments;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+
+import androidx.fragment.app.Fragment;
+import androidx.transition.TransitionInflater;
+
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.hit.underthesea.MusicPlayer;
 import com.hit.underthesea.R;
 import com.hit.underthesea.model.InfoData;
-import java.util.Objects;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
@@ -62,6 +63,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             public void onClick(View view) {
                 // When X pressed, we exit from fragment into the main screen
                 requireActivity().getSupportFragmentManager().popBackStack();
+                requireActivity().invalidateOptionsMenu();
             }
         });
         // After the inflation, we return the view to show it as the fragment screen

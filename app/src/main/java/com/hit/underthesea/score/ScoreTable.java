@@ -9,14 +9,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ListView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.hit.underthesea.BaseActivity;
 import com.hit.underthesea.PlayMenu;
 import com.hit.underthesea.R;
 import com.hit.underthesea.fragments.SettingsFragment;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,6 +67,7 @@ public class ScoreTable extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.actions_setting){
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerscoretable, new SettingsFragment(), null).addToBackStack("Settings").commit();
+            item.setVisible(false);
             return true;
         }
         if(item.getItemId()==R.id.home_score){

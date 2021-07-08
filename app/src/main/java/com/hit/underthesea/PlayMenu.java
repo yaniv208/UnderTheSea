@@ -14,8 +14,6 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
-import androidx.fragment.app.Fragment;
-
 import com.hit.underthesea.fragments.FirstGuidanceFragment;
 import com.hit.underthesea.fragments.SettingsFragment;
 import com.hit.underthesea.score.ScoreTable;
@@ -102,6 +100,7 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.actions_set){
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new SettingsFragment(), null).addToBackStack("Settings").commit();
+            item.setVisible(false);
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -18,8 +18,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.hit.underthesea.score.ScoreTable;
+
 import java.util.ArrayList;
+
 
 public class GameView extends SurfaceView implements Runnable {
 
@@ -50,7 +53,7 @@ public class GameView extends SurfaceView implements Runnable {
         backgroundGame1 = new BackgroundGame(screenX, screenY, getResources());
         backgroundGame2 = new BackgroundGame(screenX, screenY, getResources());
 
-        fish= new Fish(screenY, getResources(),level.getFishpic());
+        fish= new Fish(screenY, getResources(),level.getFishPic());
 
         backgroundGame2.x=screenX;
 
@@ -60,11 +63,11 @@ public class GameView extends SurfaceView implements Runnable {
 
 
         for(int i = 0; i< level.getStoneAmount(); i++){
-            stones.add(new Stone(getResources(),level.getStonepic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
+            stones.add(new Stone(getResources(),level.getStonePic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
         }
 
         for(int i = 0; i< level.getFoodAmount(); i++){
-            foods.add(new Food(getResources(),level.getFoodpic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
+            foods.add(new Food(getResources(),level.getFoodPic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
         }
     }
 
@@ -96,7 +99,7 @@ public class GameView extends SurfaceView implements Runnable {
             if (live != lives){
                 stones.remove(i);
                 lives = live;
-                stones.add(new Stone(getResources(),level.getStonepic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
+                stones.add(new Stone(getResources(),level.getStonePic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
                 if(lives == 0)
                     isGameOver = true;
                 return;
@@ -129,7 +132,7 @@ public class GameView extends SurfaceView implements Runnable {
             scoreText.setTextSize(70);
             scoreText.setColor(Color.WHITE);
             scoreText.isFakeBoldText();
-            String myScore = "Score: " + score;
+            String myScore = ((Activity)getContext()).getString(R.string.score_in_play) + " " + score;
             Rect bounds = new Rect();
             scoreText.getTextBounds(myScore, 0, myScore.length(), bounds);
 
@@ -139,11 +142,11 @@ public class GameView extends SurfaceView implements Runnable {
             Bitmap livesRed = BitmapFactory.decodeResource(getResources(), R.drawable.heartred);
             Bitmap livesWhite = BitmapFactory.decodeResource(getResources(),R.drawable.heartwhite);
 
-            for(int j= 0; j<lives ; j++){
+            for(int j= 0; j < lives ; j++){
                 canvas.drawBitmap(livesRed, null, new Rect(this.getWidth()-bounds.width()-screenX/2-(3-j)*56+30, 60, this.getWidth()-bounds.width()-screenX/2-(2-j)*56+30, 101), null);
             }
 //
-            for(int j=lives; j<3 ; j++){
+            for(int j=lives; j < 3 ; j++){
                 canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-screenX/2-(3-j)*55+30, 58, this.getWidth()-bounds.width()-screenX/2-(2-j)*55+30, 99), null);
             }
 
@@ -179,7 +182,7 @@ public class GameView extends SurfaceView implements Runnable {
                                         (getContext()).startActivity(intent);
                                         intent.putExtra("score_user", score);
                                         intent.putExtra("user_name", username);
-                                        intent.putExtra("level_name", level.getNumlevel());
+                                        intent.putExtra("level_name", level.getNumLevel());
                                         (getContext()).startActivity(intent);
                                         ((Activity) getContext()).finish();
                                     }

@@ -29,7 +29,7 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="ok_btn">OK</string>
     <string name="guide_first">Move the character with your finger up and down.</string>
-    <string name="didnt_reach">You didn\'t get enough points to get into the high score table</string>
+    <string name="didnt_reach">You did not reach enough points to get into the high score table</string>
     <string name="guide_second">Move with the fish towards the food and collect points.</string>
     <string name="guide_third">Avoid obstacles.</string>
     <string name="try_again">Try again</string>
@@ -37,4 +37,5 @@
     <string name="howtoplay_explaination">First, choose a difficulty level. The main goal of the game is collecting as much points as possible while avoiding different obstacles, and trying to beat the high score.</string>
     <string name="credits_explaination" translatable="false">Background music: Monkeys Spinning Monkeys Kevin MacLeod, Licensed under Creative Commons: By Attribution 3.0 License</string>
     <string name="your_name_tv">Your name:</string>
+    <string name="score_in_play">Score:</string>
 </resources>

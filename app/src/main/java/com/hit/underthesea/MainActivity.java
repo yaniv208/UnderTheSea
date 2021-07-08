@@ -1,6 +1,5 @@
 package com.hit.underthesea;
 
-import androidx.annotation.NonNull;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -10,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
-import com.hit.underthesea.fragments.SettingsFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +18,10 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
+
+import com.hit.underthesea.fragments.SettingsFragment;
 
 import java.util.Objects;
 
@@ -54,7 +56,6 @@ public class MainActivity extends BaseActivity {
         set1.playTogether(animator,animator2);
         set1.start();
 
-        // startService(new Intent(this, MusicService.class));
         MusicPlayer.getInstance().initialize(this);
 
         ImageButton playBtn = findViewById(R.id.play_button);
@@ -77,6 +78,7 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.actions_set){
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new SettingsFragment(), null).addToBackStack("Settings").commit();
+            item.setVisible(false);
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -1,17 +1,17 @@
 package com.hit.underthesea.fragments;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.transition.TransitionInflater;
+
 import com.hit.underthesea.R;
 import com.hit.underthesea.model.InfoData;
-
-import java.util.Objects;
 
 public class InfoFragment extends Fragment {
 
@@ -48,6 +48,7 @@ public class InfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 requireActivity().getSupportFragmentManager().popBackStack();
+                requireActivity().invalidateOptionsMenu();
             }
         });
 

@@ -3,38 +3,38 @@ package com.hit.underthesea;
 public class Level {
     private int stoneAmount;
     private int foodAmount;
-    private int fishpic;
-    private int foodpic;
-    private int stonepic;
+    private int fishPic;
+    private int foodPic;
+    private int stonePic;
     private int maxSpeedFood, minSpeedFood, maxSpeedStone,minSpeedStone;
-    private String numlevel;
+    private String numLevel;
     private int highScore;
 
-    public Level(int stoneAmount, int foodAmount, int fishpic, int foodpic, int stonepic, int maxSpeedFood, int minSpeedFood, int maxSpeedStone, int minSpeedStone,String numlevel, int highScore) {
+    public Level(int stoneAmount, int foodAmount, int fishPic, int foodPic, int stonePic, int maxSpeedFood, int minSpeedFood, int maxSpeedStone, int minSpeedStone, String numLevel, int highScore) {
         this.stoneAmount = stoneAmount;
         this.foodAmount = foodAmount;
-        this.fishpic = fishpic;
-        this.foodpic = foodpic;
-        this.stonepic = stonepic;
+        this.fishPic = fishPic;
+        this.foodPic = foodPic;
+        this.stonePic = stonePic;
         this.maxSpeedFood = maxSpeedFood;
         this.minSpeedFood = minSpeedFood;
         this.maxSpeedStone = maxSpeedStone;
         this.minSpeedStone = minSpeedStone;
-        this.numlevel=numlevel;
+        this.numLevel = numLevel;
         this.highScore=highScore;
     }
 
     public Level(Level level) {
         this.stoneAmount = level.stoneAmount;
         this.foodAmount = level.foodAmount;
-        this.fishpic = level.fishpic;
-        this.foodpic = level.foodpic;
-        this.stonepic = level.stonepic;
+        this.fishPic = level.fishPic;
+        this.foodPic = level.foodPic;
+        this.stonePic = level.stonePic;
         this.maxSpeedFood = level.maxSpeedFood;
         this.minSpeedFood = level.minSpeedFood;
         this.maxSpeedStone = level.maxSpeedStone;
         this.minSpeedStone = level.minSpeedStone;
-        this.numlevel = level.numlevel;
+        this.numLevel = level.numLevel;
         this.highScore=level.highScore;
     }
 
@@ -54,28 +54,28 @@ public class Level {
         this.foodAmount = foodAmount;
     }
 
-    public int getFishpic() {
-        return fishpic;
+    public int getFishPic() {
+        return fishPic;
     }
 
-    public void setFishpic(int fishpic) {
-        this.fishpic = fishpic;
+    public void setFishPic(int fishPic) {
+        this.fishPic = fishPic;
     }
 
-    public int getFoodpic() {
-        return foodpic;
+    public int getFoodPic() {
+        return foodPic;
     }
 
-    public void setFoodpic(int foodpic) {
-        this.foodpic = foodpic;
+    public void setFoodPic(int foodPic) {
+        this.foodPic = foodPic;
     }
 
-    public int getStonepic() {
-        return stonepic;
+    public int getStonePic() {
+        return stonePic;
     }
 
-    public void setStonepic(int stonepic) {
-        this.stonepic = stonepic;
+    public void setStonePic(int stonePic) {
+        this.stonePic = stonePic;
     }
 
     public int getMaxSpeedFood() {
@@ -92,9 +92,9 @@ public class Level {
 
     public void setHighScore(int highScore) { this.highScore = highScore; }
 
-    public String getNumlevel() { return numlevel; }
+    public String getNumLevel() { return numLevel; }
 
-    public void setNumlevel(String numlevel) { this.numlevel = numlevel; }
+    public void setNumLevel(String numLevel) { this.numLevel = numLevel; }
 
     public void setMinSpeedFood(int minSpeedFood) {
         this.minSpeedFood = minSpeedFood;

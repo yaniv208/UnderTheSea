@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Under The Sea</string>
+    <string name="app_name">מתחת לים</string>
     <string name="easy_btn">קל</string>
     <string name="medium_btn">בינוני</string>
     <string name="hard_btn">קשה</string>

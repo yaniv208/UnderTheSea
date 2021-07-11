@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/game_over_view"
@@ -77,32 +78,29 @@
                 android:textColor="@color/white" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <FrameLayout
             android:id="@+id/fin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
             android:gravity="center">
             <ImageButton
                 android:id="@+id/finish_btn"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:background="@null"
-                android:src="@drawable/ok_button_gameover"/>
+                android:src="@drawable/ok_button_gameover" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:clickable="false"
                 android:text="@string/ok_btn"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
                 android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
-        </RelativeLayout>
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </FrameLayout>
     </LinearLayout>
 
 </LinearLayout>

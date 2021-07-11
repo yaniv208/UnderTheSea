@@ -50,7 +50,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/finger_guidance"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription">
 
         </ImageView>
 
@@ -63,7 +64,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/fish_guidance"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.503"></ImageView>
+            app:layout_constraintVertical_bias="0.503"
+            tools:ignore="ContentDescription">
+        </ImageView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/first_guidance_next"

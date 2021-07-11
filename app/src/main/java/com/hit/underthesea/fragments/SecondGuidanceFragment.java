@@ -14,7 +14,7 @@ import androidx.transition.TransitionInflater;
 import com.google.android.material.button.MaterialButton;
 import com.hit.underthesea.R;
 
-public class SecondGuidanceFragment extends Fragment implements View.OnClickListener{
+public class SecondGuidanceFragment extends Fragment{
 
     public SecondGuidanceFragment(){
         // default empty constructor
@@ -48,7 +48,4 @@ public class SecondGuidanceFragment extends Fragment implements View.OnClickList
 
         return view;
     }
-
-    @Override
-    public void onClick(View v) { }
 }

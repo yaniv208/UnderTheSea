@@ -14,7 +14,7 @@ import androidx.transition.TransitionInflater;
 import com.google.android.material.button.MaterialButton;
 import com.hit.underthesea.R;
 
-public class FirstGuidanceFragment extends Fragment implements View.OnClickListener{
+public class FirstGuidanceFragment extends Fragment{
 
     public FirstGuidanceFragment(){
         // default empty constructor
@@ -32,23 +32,18 @@ public class FirstGuidanceFragment extends Fragment implements View.OnClickListe
        View view = inflater.inflate(R.layout.guidance_first, container, false);
        ImageView finger = view.findViewById(R.id.finger_guidance);
        Animation slide_down = AnimationUtils.loadAnimation(getContext(), R.anim.swipe_down);
-        slide_down.setRepeatMode(Animation.INFINITE);
-        finger.startAnimation(slide_down);
+       slide_down.setRepeatMode(Animation.INFINITE);
+       finger.startAnimation(slide_down);
 
        MaterialButton nextBtn = view.findViewById(R.id.first_guidance_next);
        nextBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                requireActivity().getSupportFragmentManager().popBackStack();
-               getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new SecondGuidanceFragment(), null).addToBackStack("Second Guidance").commit();
+               requireActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new SecondGuidanceFragment(), null).addToBackStack("Second Guidance").commit();
            }
         });
 
         return view;
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

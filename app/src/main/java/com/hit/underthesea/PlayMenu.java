@@ -32,6 +32,8 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 
+        //create the buttons animation - change scaleX and scaleY
+        //easy level button
         RelativeLayout relativeLayout1 = findViewById(R.id.level1_background);
         ObjectAnimator animator1scaleX = ObjectAnimator.ofFloat(relativeLayout1,"scaleX",((float)(1.15))).setDuration(250);
         ObjectAnimator animator1scaleY = ObjectAnimator.ofFloat(relativeLayout1,"scaleY",((float)(1.15))).setDuration(250);
@@ -42,7 +44,7 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
         AnimatorSet set1 = new AnimatorSet();
         set1.playTogether(animator1scaleX,animator1scaleY);
         set1.start();
-
+        //medium level button
         RelativeLayout relativeLayout2 = findViewById(R.id.level2_background);
         ObjectAnimator animator2scaleX = ObjectAnimator.ofFloat(relativeLayout2,"scaleX",((float)(1.15))).setDuration(250);
         ObjectAnimator animator2scaleY = ObjectAnimator.ofFloat(relativeLayout2,"scaleY",((float)(1.15))).setDuration(250);
@@ -53,7 +55,7 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
         AnimatorSet set2 = new AnimatorSet();
         set2.playTogether(animator2scaleX,animator2scaleY);
         set2.start();
-
+        //hard level button
         RelativeLayout relativeLayout3 = findViewById(R.id.level3_background);
         ObjectAnimator animator3scaleX = ObjectAnimator.ofFloat(relativeLayout3,"scaleX",((float)(1.15))).setDuration(250);
         ObjectAnimator animator3scaleY = ObjectAnimator.ofFloat(relativeLayout3,"scaleY",((float)(1.15))).setDuration(250);
@@ -85,7 +87,7 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
         guidanceFragments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new FirstGuidanceFragment(), null).addToBackStack("First Guidance").commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new FirstGuidanceFragment(), null).addToBackStack("First Guidance").commit();
             }
         });
     }
@@ -98,6 +100,7 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //the user press the setting button - create the setting window
         if(item.getItemId()==R.id.actions_set){
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerplay, new SettingsFragment(), null).addToBackStack("Settings").commit();
             item.setVisible(false);
@@ -115,6 +118,7 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
             numberLevel=3;
         }
 
+        //send the next page (play menu) the level that the user press - with the help of bundle
         Bundle bundle = new Bundle();
         bundle.putInt("num_level", numberLevel);
         Intent intent = new Intent(PlayMenu.this, GameActivity.class);
@@ -122,6 +126,7 @@ public class PlayMenu extends BaseActivity implements View.OnClickListener{
         startActivity(intent);
     }
 
+    //when press the back button - launchMode singleTask
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);

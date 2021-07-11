@@ -34,12 +34,9 @@ public class GameView extends SurfaceView implements Runnable {
     private int screenX, screenY, score = 0, lives = 3;
     private Paint paint;
     private Fish fish;
-//    private Stone stone;
-//    private Food food;
     private BackgroundGame backgroundGame1, backgroundGame2;
     private ArrayList<Stone> stones = new ArrayList<Stone>();
     private ArrayList<Food> foods = new ArrayList<Food>();
-   // int min=1, max=3;
 
     public GameView(Context context, int screenX, int screenY, Level levelYouAre){
         super(context);
@@ -66,7 +63,7 @@ public class GameView extends SurfaceView implements Runnable {
         }
 
         for(int i = 0; i< level.getFoodAmount(); i++){
-            foods.add(new Food(getResources(),level.getFoodPic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
+            foods.add(new Food(getResources(),level.getFoodPic(),level.getMinSpeedFood(),level.getMaxSpeedFood()));
         }
     }
 
@@ -96,9 +93,12 @@ public class GameView extends SurfaceView implements Runnable {
 
             int live = stones.get(i).hit(fish, lives, score);
             if (live != lives){
+                //remove the stone that hit the fish
                 stones.remove(i);
                 lives = live;
+                //create a new stone instead
                 stones.add(new Stone(getResources(),level.getStonePic(),level.getMinSpeedStone(),level.getMaxSpeedStone()));
+                //check if the user finish all his lives - the game is finish......
                 if(lives == 0)
                     isGameOver = true;
                 return;
@@ -120,9 +120,12 @@ public class GameView extends SurfaceView implements Runnable {
         if(getHolder().getSurface().isValid()){
 
             Canvas canvas = getHolder().lockCanvas();
+
+            //background
             canvas.drawBitmap(backgroundGame1.background , backgroundGame1.x , backgroundGame1.y,paint );
             canvas.drawBitmap(backgroundGame2.background , backgroundGame2.x , backgroundGame2.y,paint );
 
+            //food
             for (Food food : foods)
                 canvas.drawBitmap(food.getObject(), food.getX(), food.getY(), paint);
 
@@ -137,18 +140,20 @@ public class GameView extends SurfaceView implements Runnable {
 
             canvas.drawText(myScore + "", this.getWidth() - bounds.width()-screenX/2+40 , bounds.height()+50 , scoreText);
 
-            // lives
+            // lives - red lives or white lives
             Bitmap livesRed = BitmapFactory.decodeResource(getResources(), R.drawable.heartred);
             Bitmap livesWhite = BitmapFactory.decodeResource(getResources(),R.drawable.heartwhite);
 
+            //red lives
             for(int j= 0; j < lives ; j++){
                 canvas.drawBitmap(livesRed, null, new Rect(this.getWidth()-bounds.width()-screenX/2-(3-j)*56+30, 60, this.getWidth()-bounds.width()-screenX/2-(2-j)*56+30, 101), null);
             }
-//
+            //white lives
             for(int j=lives; j < 3 ; j++){
                 canvas.drawBitmap(livesWhite, null, new Rect(this.getWidth()-bounds.width()-screenX/2-(3-j)*55+30, 58, this.getWidth()-bounds.width()-screenX/2-(2-j)*55+30, 99), null);
             }
 
+            //check is the game is over - the user finish all his lives
             if(isGameOver) {
                 isPlaying = false;
                 canvas.drawBitmap(fish.getDead(), fish.x,fish.y,paint);
@@ -157,6 +162,9 @@ public class GameView extends SurfaceView implements Runnable {
 
                 ((Activity)getContext()).runOnUiThread(new Runnable() {
                     public void run() {
+                        //check if the user score is big the high score of the his level
+                        //if - yes - create the alert dialog that save his name and add this to the high
+                        //score table
                         if(level.getHighScore()<=score) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(context);
                             LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
@@ -191,6 +199,8 @@ public class GameView extends SurfaceView implements Runnable {
                             TextView scoreTV = viewInflater.findViewById(R.id.player_score);
                             scoreTV.setText(score + "");
                         }
+                        //if - not - create the alert dialog that show him his score and
+                        //how much point left to him to be write in the score high table
                         else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(context);
                             LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
@@ -221,7 +231,9 @@ public class GameView extends SurfaceView implements Runnable {
                 return;
             }
 
+            //fish
             canvas.drawBitmap(fish.getFish(), fish.x, fish.y, paint);
+            //stone
             for (Stone stone : stones)
                 canvas.drawBitmap(stone.getObject(), stone.getX(), stone.getY(), paint);
             getHolder().unlockCanvasAndPost(canvas);
@@ -257,6 +269,8 @@ public class GameView extends SurfaceView implements Runnable {
         float distanceY;
         switch (event.getAction()){
             // When the user puts his finger down the screen
+            //the fish x stay the same
+            //the y change according to the finger movement
             case MotionEvent.ACTION_DOWN:
                 yDown = event.getY();
                 break;

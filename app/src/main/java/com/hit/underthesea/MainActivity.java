@@ -35,6 +35,7 @@ public class MainActivity extends BaseActivity {
         Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        //create the bubbles animation
         ImageView imageView=findViewById(R.id.bubble1);
         AnimationDrawable animationDrawable =(AnimationDrawable)imageView.getDrawable();
         animationDrawable.start();
@@ -43,6 +44,7 @@ public class MainActivity extends BaseActivity {
         AnimationDrawable animationDrawable2 =(AnimationDrawable)imageView2.getDrawable();
         animationDrawable2.start();
 
+        //create the button animation - change scaleX and scaleY
         RelativeLayout relativeLayout = findViewById(R.id.buttonAnimation);
         ObjectAnimator animator = ObjectAnimator.ofFloat(relativeLayout,"scaleX",((float)(1.15))).setDuration(250);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(relativeLayout,"scaleY",((float)(1.15))).setDuration(250);
@@ -54,6 +56,7 @@ public class MainActivity extends BaseActivity {
         set1.playTogether(animator,animator2);
         set1.start();
 
+        //start the music - in the main page
         MusicPlayer.getInstance().initialize(this);
 
         ImageButton playBtn = findViewById(R.id.play_button);
@@ -74,6 +77,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //the user press the setting button - create the setting window
         if(item.getItemId()==R.id.actions_set){
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new SettingsFragment(), null).addToBackStack("Settings").commit();
             item.setVisible(false);
@@ -82,6 +86,7 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //when back press - create alert dialog - ask the user if he want exit the app
     public void onBackPressed(){
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -94,7 +99,7 @@ public class MainActivity extends BaseActivity {
         ImageButton yes_btn = viewInflater.findViewById(R.id.yes_exit);
         yes_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { //exit the app
                 exitDialog.dismiss();
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
@@ -104,7 +109,7 @@ public class MainActivity extends BaseActivity {
         });
 
         ImageButton no_btn = viewInflater.findViewById(R.id.no_exit);
-        no_btn.setOnClickListener(new View.OnClickListener() {
+        no_btn.setOnClickListener(new View.OnClickListener() {//close the alert dialog
             @Override
             public void onClick(View view) {
                 exitDialog.dismiss();

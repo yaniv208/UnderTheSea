@@ -44,6 +44,7 @@
                 android:layout_toEndOf="@+id/your_score"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
                 android:textColor="@color/white"
+                android:textStyle="bold"
                 android:textSize="25sp"/>
         </RelativeLayout>
 

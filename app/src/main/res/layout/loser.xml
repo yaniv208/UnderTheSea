@@ -43,6 +43,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/your_score_loser"
                 android:text="0"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </RelativeLayout>

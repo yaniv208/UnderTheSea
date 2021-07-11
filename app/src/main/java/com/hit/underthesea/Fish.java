@@ -11,8 +11,10 @@ public class Fish {
     Bitmap fish, dead;
 
     Fish (int screenY, Resources res, int pic){
+        //create the level bitmap fish picture
         fish = BitmapFactory.decodeResource(res, pic);
 
+        //const size to the fish player
         width = fish.getWidth();
         height = fish.getHeight();
 
@@ -29,7 +31,7 @@ public class Fish {
     Bitmap getFish(){
         return fish;
     }
-
+    //return the frame/shape of the fish for collision in game view
     Rect getCollisionShape (){
         return new Rect(x, y, x+width, y+height);
     }

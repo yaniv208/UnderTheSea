@@ -10,16 +10,15 @@ public class Stone extends ObjectView{
         super(res, picStone, minSpeed,maxSpeed);
     }
 
-//    Bitmap getStone(){
-//        return stone;
-//    }
-
+    //polymorphism - change the hit function of object view according to the stone object
     @Override
     public int hit (Fish fish, int lives, int score) {
         int resultIntersect = super.hit(fish, lives, score);
+        //if the stone and the fish intersect - the super function return 1
         if(resultIntersect == 1) {
-            lives--;
+            lives--;//decreases the lives in one point
         }
+        //return the update lives to the game view
         return lives;
     }
 }

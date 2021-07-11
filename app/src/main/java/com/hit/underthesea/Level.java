@@ -41,78 +41,41 @@ public class Level {
     public int getStoneAmount() {
         return stoneAmount;
     }
-
-//    public void setStoneAmount(int stoneAmount) {
-//        this.stoneAmount = stoneAmount;
-//    }
-
+    public void setStoneAmount(int stoneAmount) {this.stoneAmount = stoneAmount;}
     public int getFoodAmount() {
         return foodAmount;
     }
-
-//    public void setFoodAmount(int foodAmount) {
-//        this.foodAmount = foodAmount;
-//    }
-
+    public void setFoodAmount(int foodAmount) {this.foodAmount = foodAmount;}
     public int getFishPic() {
         return fishPic;
     }
-
     public void setFishPic(int fishPic) {
         this.fishPic = fishPic;
     }
-
     public int getFoodPic() {
         return foodPic;
     }
-
     public void setFoodPic(int foodPic) {
         this.foodPic = foodPic;
     }
-
     public int getStonePic() {
         return stonePic;
     }
-
-//    public void setStonePic(int stonePic) {
-//        this.stonePic = stonePic;
-//    }
-//
-//    public int getMaxSpeedFood() {
-//        return maxSpeedFood;
-//    }
-//
-//    public void setMaxSpeedFood(int maxSpeedFood) {
-//        this.maxSpeedFood = maxSpeedFood;
-//    }
-//
-//    public int getMinSpeedFood() { return minSpeedFood; }
-
+    public void setStonePic(int stonePic) {this.stonePic = stonePic;}
+    public int getMaxSpeedFood() { return maxSpeedFood; }
+    public void setMaxSpeedFood(int maxSpeedFood) { this.maxSpeedFood = maxSpeedFood; }
+    public int getMinSpeedFood() { return minSpeedFood; }
     public int getHighScore() { return highScore; }
-
-//    public void setHighScore(int highScore) { this.highScore = highScore; }
-
+    public void setHighScore(int highScore) { this.highScore = highScore; }
     public String getNumLevel() { return numLevel; }
-
-//    public void setNumLevel(String numLevel) { this.numLevel = numLevel; }
-//
-//    public void setMinSpeedFood(int minSpeedFood) {
-//        this.minSpeedFood = minSpeedFood;
-//    }
-
+    public void setNumLevel(String numLevel) { this.numLevel = numLevel; }
+    public void setMinSpeedFood(int minSpeedFood) {this.minSpeedFood = minSpeedFood;}
     public int getMaxSpeedStone() {
         return maxSpeedStone;
     }
-
-//    public void setMaxSpeedStone(int maxSpeedStone) {
-//        this.maxSpeedStone = maxSpeedStone;
-//    }
-
+    public void setMaxSpeedStone(int maxSpeedStone) {this.maxSpeedStone = maxSpeedStone;}
     public int getMinSpeedStone() {
         return minSpeedStone;
     }
-
-//    public void setMinSpeedStone(int minSpeedStone) {
-//        this.minSpeedStone = minSpeedStone;
-//    }
+    public void setMinSpeedStone(int minSpeedStone) {this.minSpeedStone = minSpeedStone;}
 }

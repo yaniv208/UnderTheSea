@@ -35,9 +35,9 @@ public class Score {
         this.name = name;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
+//    public void setLevel(String level) {
+//        this.level = level;
+//    }
 
     public void setScore(int score) {
         this.score = score;

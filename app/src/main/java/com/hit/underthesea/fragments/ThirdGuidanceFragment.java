@@ -14,8 +14,6 @@ import androidx.transition.TransitionInflater;
 import com.google.android.material.button.MaterialButton;
 import com.hit.underthesea.R;
 
-import java.util.Objects;
-
 public class ThirdGuidanceFragment extends Fragment implements View.OnClickListener{
 
     public ThirdGuidanceFragment(){

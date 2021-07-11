@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
 public class Fish {
-    int width, height, wingCounter=0;
+    int width, height;
     int x,y;
     Bitmap fish, dead;
 

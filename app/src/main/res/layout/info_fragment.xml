@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@drawable/settings"
-    android:clickable="true"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/settings"
+    android:clickable="true">
 
     <ImageButton
         android:id="@+id/exit_info"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@+id/title"
         android:background="@android:color/transparent"
-        android:src="@drawable/exitbut"/>
+        android:src="@drawable/exitbut"
+        app:layout_constraintBaseline_toBaselineOf="@+id/title"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
         android:id="@+id/title"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/how_to_play"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/how_to_play"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
         android:textColor="@color/white"
         android:textSize="29sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/body"

@@ -7,12 +7,8 @@ public class Food extends ObjectView {
     Bitmap food;
     public boolean wasEaten = true;
 
-    public Food(Resources res,int foodPic, int minSpeed, int maxSpeed) {
+    public Food (Resources res,int foodPic, int minSpeed, int maxSpeed) {
         super(res, foodPic, minSpeed,maxSpeed);
-    }
-
-    Bitmap getFood(){
-        return food;
     }
 
     @Override

@@ -27,7 +27,6 @@ import java.util.ArrayList;
 public class GameView extends SurfaceView implements Runnable {
 
     public static final int BACKGROUND_MOVEMENT = 10;
-
     private Level level;
     private Context context;
     private Thread thread;
@@ -35,12 +34,12 @@ public class GameView extends SurfaceView implements Runnable {
     private int screenX, screenY, score = 0, lives = 3;
     private Paint paint;
     private Fish fish;
-    private Stone stone;
-    private Food food;
+//    private Stone stone;
+//    private Food food;
     private BackgroundGame backgroundGame1, backgroundGame2;
     private ArrayList<Stone> stones = new ArrayList<Stone>();
     private ArrayList<Food> foods = new ArrayList<Food>();
-    int min=1, max=3;
+   // int min=1, max=3;
 
     public GameView(Context context, int screenX, int screenY, Level levelYouAre){
         super(context);
@@ -132,7 +131,7 @@ public class GameView extends SurfaceView implements Runnable {
             scoreText.setTextSize(70);
             scoreText.setColor(Color.WHITE);
             scoreText.isFakeBoldText();
-            String myScore = ((Activity)getContext()).getString(R.string.score_in_play) + " " + score;
+            String myScore = getContext().getString(R.string.score_in_play) + " " + score;
             Rect bounds = new Rect();
             scoreText.getTextBounds(myScore, 0, myScore.length(), bounds);
 

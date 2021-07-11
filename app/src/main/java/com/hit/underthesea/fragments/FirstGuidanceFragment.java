@@ -7,11 +7,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
 import androidx.fragment.app.Fragment;
 import androidx.transition.TransitionInflater;
+
 import com.google.android.material.button.MaterialButton;
 import com.hit.underthesea.R;
-import java.util.Objects;
 
 public class FirstGuidanceFragment extends Fragment implements View.OnClickListener{
 

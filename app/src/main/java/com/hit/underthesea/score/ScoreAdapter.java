@@ -19,22 +19,25 @@ public class ScoreAdapter extends BaseAdapter {
         this.scores = scores;
         this.context = context;
     }
-    //מחזיר את גודל הרשימה
+
+    // Returns list size
     @Override
     public int getCount() {
         return scores.size();
     }
-    //מחזיר את האובייקט במקום מסויים
+
+    // Returns an object at a specific index
     @Override
     public Object getItem(int i) {
         return scores.get(i);
     }
-    //לא חובה
+
     @Override
     public long getItemId(int i) {
         return 0;
     }
-    //נקראת כל הזמן על ידי הרשימה, מעבירה את המיקום הבא שהיא רוצה להציג
+
+    // Passes the next index we want to show
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {

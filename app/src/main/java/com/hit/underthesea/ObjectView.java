@@ -60,23 +60,23 @@ public class ObjectView {
         return height;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
+//    public int getSpeed() {
+//        return speed;
+//    }
 
     Bitmap getObject(){ return object; }
 
     public void setX(int x) { this.x = x; }
 
-    public void setY(int y) { this.y = y; }
+//    public void setY(int y) { this.y = y; }
 
     public void setWidth(int width) { this.width = width; }
 
-    public void setHeight(int height) { this.height = height; }
-
-    public void setObject(Bitmap object) { this.object = object; }
-
-    public void setSpeed(int speed) { this.speed = speed; }
+//    public void setHeight(int height) { this.height = height; }
+//
+//    public void setObject(Bitmap object) { this.object = object; }
+//
+//    public void setSpeed(int speed) { this.speed = speed; }
 
     Rect getCollisionShape () {
         return new Rect(this.getX(), this.getY(), this.getX() + this.getWidth(), this.getY() + this.getHeight());

@@ -37,7 +37,7 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        //מקבלים את המידע מהסטינגס ועורכים את הכותרת ואת הגוף של הפרגמנט ילד
+        // מקבלים את המידע מהסטינגס ועורכים את הכותרת ואת הגוף של הפרגמנט ילד
         View view = inflater.inflate(R.layout.info_fragment, container, false);
         TextView title = view.findViewById(R.id.title);
         TextView body = view.findViewById(R.id.body);

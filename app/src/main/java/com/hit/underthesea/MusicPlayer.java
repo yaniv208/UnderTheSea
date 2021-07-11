@@ -2,7 +2,6 @@ package com.hit.underthesea;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.util.Log;
 
 public class MusicPlayer {
 
@@ -25,7 +24,6 @@ public class MusicPlayer {
             }
 
             public void play(boolean byUser) {
-                Log.d("byuser play",byUser+"");
                 if(byUser) {
                     mediaPlayer.start();
                     pausedByUser=false;
@@ -40,7 +38,7 @@ public class MusicPlayer {
                 this.mediaPlayer.pause();
            }
 
-           public void pausedByUser (){
-                pausedByUser = true;
-           }
+//           public void pausedByUser (){
+//                pausedByUser = true;
+//           }
         }

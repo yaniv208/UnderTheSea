@@ -22,13 +22,13 @@ import com.hit.underthesea.fragments.SettingsFragment;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
 
 public class ScoreTable extends BaseActivity {
 
     ArrayList<Score> scores;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +45,8 @@ public class ScoreTable extends BaseActivity {
         String numLevel =intent.getStringExtra("level_name");
 
         loadData();
-        if(userName!=null) { // When its come from the score
+        if(userName!=null) { // When it comes from score
             addScoreInHisPosition(userName,numLevel,userScore);
-            //scores.add(new Score(userName, "1", userScore));
             saveData();
         }
 
@@ -67,13 +66,13 @@ public class ScoreTable extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.actions_setting){
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_containerscoretable, new SettingsFragment(), null).addToBackStack("Settings").commit();
-            item.setVisible(false);
+            item.setVisible(false); // equivalent to setCancelable()
             return true;
         }
         if(item.getItemId()==R.id.home_score){
             Intent intent = new Intent(this, PlayMenu.class);
             startActivity(intent);
-            finish();
+            finish(); // kill the screen
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -99,14 +98,15 @@ public class ScoreTable extends BaseActivity {
         }
     }
     public void addScoreInHisPosition(String name,String level,int score){
-        if(scores.size()==0){//first
+        if(scores.size()==0){ //First
             scores.add(new Score(name,level,score));
-        }else{
+        }
+        else {
             scores.add(new Score(name,level,score));
-            Collections.sort(scores, new Comparator<Score>() {
+            scores.sort(new Comparator<Score>() {
                 @Override
                 public int compare(Score s1, Score s2) {
-                    return (Integer)s2.getScore() - (Integer)s1.getScore();
+                    return (Integer) s2.getScore() - (Integer) s1.getScore();
                 }
             });
         }

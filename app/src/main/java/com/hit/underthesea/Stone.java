@@ -10,14 +10,13 @@ public class Stone extends ObjectView{
         super(res, picStone, minSpeed,maxSpeed);
     }
 
-    Bitmap getStone(){
-        return stone;
-    }
+//    Bitmap getStone(){
+//        return stone;
+//    }
 
     @Override
     public int hit (Fish fish, int lives, int score) {
         int resultIntersect = super.hit(fish, lives, score);
-        // Log.d("check", resultIntersect+"");
         if(resultIntersect == 1) {
             lives--;
         }

@@ -35,7 +35,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //הוא מוסיף את האבא כי יש תכונות באקסמל שמותאמים לאבא, לכן ברגע שהוא יקבל את ההורה הם יוכלו להתאים את עצמם
+        // הוא מוסיף את האבא כי יש תכונות באקסמל שמותאמים לאבא, לכן ברגע שהוא יקבל את ההורה הם יוכלו להתאים את עצמם
         View view = inflater.inflate(R.layout.settings, container, false);
         Button howToPlay = view.findViewById(R.id.howToPlay_btn);
         Button credit = view.findViewById(R.id.credit_btn);
@@ -56,6 +56,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+
         howToPlay.setOnClickListener(this);
         credit.setOnClickListener(this);
         view.findViewById(R.id.exit_setting).setOnClickListener(new View.OnClickListener() {
@@ -66,6 +67,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 requireActivity().invalidateOptionsMenu();
             }
         });
+
         // After the inflation, we return the view to show it as the fragment screen
         return view;
     }

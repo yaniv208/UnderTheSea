@@ -1,25 +1,25 @@
 package com.hit.underthesea;
 
-        import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 
-        import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
-        public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
 
-            @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-            }
+        super.onCreate(savedInstanceState);
+    }
 
-            @Override
+    @Override
     protected void onPause() {
-                MusicPlayer.getInstance().pause(false);
-                super.onPause();
-            }
+        MusicPlayer.getInstance().pause(false);
+        super.onPause();
+    }
 
-            @Override
+    @Override
     protected void onStart() {
-                super.onStart();
-            MusicPlayer.getInstance().play(false);
-           }
+        super.onStart();
+        MusicPlayer.getInstance().play(false);
+    }
 }

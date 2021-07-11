@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,16 +11,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
-        android:src="@drawable/logo"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="40dp"
-        />
+        android:src="@drawable/logo"/>
     <RelativeLayout
-        android:layout_below="@+id/logo"
-        android:layout_centerInParent="true"
+        android:id="@+id/buttonAnimation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonAnimation">
+        android:layout_below="@+id/logo"
+        android:layout_centerInParent="true">
         <ImageButton
             android:id="@+id/play_button"
             android:layout_width="wrap_content"
@@ -31,17 +29,17 @@
             android:background="@null"
             android:src="@drawable/small_start_btn2" />
         <TextView
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
-            android:clickable="false"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/play" />
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:clickable="false"
+            android:text="@string/play"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <ImageView
@@ -49,8 +47,8 @@
         android:layout_width="48dp"
         android:layout_height="379dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="120dp"
         android:src="@drawable/bubblefast" />
     <ImageView
@@ -58,8 +56,8 @@
         android:layout_width="48dp"
         android:layout_height="379dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
         android:layout_marginBottom="60dp"
         android:src="@drawable/bubbles" />
 

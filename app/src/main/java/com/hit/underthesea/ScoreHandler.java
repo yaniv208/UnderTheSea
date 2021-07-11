@@ -2,10 +2,8 @@ package com.hit.underthesea.score;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
+
 import org.json.JSONArray;
-import org.json.JSONException;
-import java.util.ArrayList;
 
 public class ScoreHandler {
     @SuppressLint("StaticFieldLeak")
@@ -35,19 +33,19 @@ public class ScoreHandler {
         this.context = context;
     }
 
-    public void addScore(Score score) {
-        getArray().put(score.toJson());
-    }
+//    public void addScore(Score score) {
+//        getArray().put(score.toJson());
+//    }
 
-    public ArrayList<Score> fetchScores(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("GameData", Context.MODE_PRIVATE);
-        try {
-            jsonArray = new JSONArray(sharedPreferences.getString("Scores", ""));
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public ArrayList<Score> fetchScores(Context context) {
+//        SharedPreferences sharedPreferences = context.getSharedPreferences("GameData", Context.MODE_PRIVATE);
+//        try {
+//            jsonArray = new JSONArray(sharedPreferences.getString("Scores", ""));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
 }

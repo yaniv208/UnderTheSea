@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,7 +25,6 @@ import com.hit.underthesea.fragments.SettingsFragment;
 import java.util.Objects;
 
 public class MainActivity extends BaseActivity {
-    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -107,11 +107,11 @@ public class GameActivity extends BaseActivity {
                 //when the user press to resume the game and the icon of the button change to the pause bitmap
                 if(item.getIcon().getConstantState().equals(getDrawable(R.drawable.play_game).getConstantState())) {
                     onPostResume();
-                    MusicPlayer.getInstance().play(true);
+                    MusicPlayer.getInstance().play(false);
                     item.setIcon(getDrawable(R.drawable.pause_button));
                 }else {//when the user press to pause the game stop and the icon of the button change to the resume bitmap
                     onPause();
-                    MusicPlayer.getInstance().play(true);
+                    MusicPlayer.getInstance().play(false);
                     item.setIcon(getDrawable(R.drawable.play_game));
                 }
                 break;
